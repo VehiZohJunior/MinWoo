@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MinWoo — Parcours Yacouba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/patterns.css">
+<link rel="stylesheet" href="../css/components.css">
+<style>
+  .entete-langue {
+    display: flex; align-items: center; gap: var(--espace-3);
+    padding: var(--espace-4) var(--espace-5);
+  }
+  .retour { font-size: 1.3rem; color: var(--texte-att); text-decoration: none; line-height: 1; }
+  .entete-langue .titre-langue { font-family: var(--police-titres); font-size: var(--taille-lg); font-weight: 600; flex: 1; }
+  .compteur-cauris { display: flex; align-items: center; gap: 6px; font-weight: 700; color: var(--recompense); font-size: var(--taille-sm); }
+  .compteur-cauris .cauris { width: 24px; height: 15px; }
+
+  .parcours-scene { max-width: 480px; margin: 0 auto; padding: var(--espace-6) var(--espace-5) var(--espace-8); position: relative; }
+
+  /* Ruban tissé qui serpente derrière les leçons */
+  .ruban {
+    position: absolute; left: 50%; top: 40px; bottom: 40px; width: 10px; transform: translateX(-50%);
+    background: repeating-linear-gradient(180deg,
+      var(--raphia) 0 10px, var(--ivoire-cauris) 10px 16px,
+      var(--raphia) 16px 26px, var(--ivoire-cauris) 26px 32px);
+    border-radius: var(--rayon-full);
+    z-index: 0;
+  }
+
+  .noeuds { position: relative; z-index: 1; display: flex; flex-direction: column; gap: var(--espace-7); }
+  .noeud-leçon { display: flex; align-items: center; gap: var(--espace-4); }
+  .noeud-leçon:nth-child(even) { flex-direction: row-reverse; text-align: right; }
+
+  .pastille {
+    width: 76px; height: 76px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
+    background: var(--surface); border: 3px solid var(--bordure); box-shadow: var(--ombre-sm);
+    position: relative;
+  }
+  .noeud-leçon.complete .pastille { background: var(--recompense); border-color: var(--or-parure); }
+  .noeud-leçon.active .pastille { background: var(--surface); border-color: var(--braise); box-shadow: 0 0 0 6px rgba(183,67,30,0.15); }
+  .noeud-leçon.verrouille .pastille { opacity: 0.45; }
+  .pastille .anneau-cauris { position: absolute; bottom: -8px; right: -4px; width: 30px; height: 19px; }
+
+  .info-leçon .nom-leçon { font-family: var(--police-titres); font-weight: 600; font-size: var(--taille-lg); }
+  .info-leçon .etat-leçon { font-size: var(--taille-xs); color: var(--texte-att); margin-top: 2px; }
+  .noeud-leçon.active .info-leçon .etat-leçon { color: var(--braise); font-weight: 700; }
+
+  .depart {
+    max-width: 480px; margin: 0 auto var(--espace-6); text-align: center;
+    color: var(--texte-att); font-size: var(--taille-sm);
+  }
+</style>
+</head>
+<body>
+<div class="motif-tisse"></div>
+
+<div class="entete-langue">
+  <a class="retour" href="index.html" aria-label="Retour">←</a>
+  <span class="titre-langue">Yacouba</span>
+  <span class="compteur-cauris">
+    <svg class="cauris obtenu" viewBox="0 0 100 60">
+      <path class="coquille" d="M8 30 C8 8 28 3 50 3 C72 3 92 8 92 30 C92 52 72 57 50 57 C28 57 8 52 8 30 Z"/>
+      <line class="fente" x1="26" y1="30" x2="74" y2="30" stroke-width="3"/>
+    </svg>
+    2
+  </span>
+</div>
+
+<p class="depart">Ton chemin d'apprentissage — termine une leçon pour débloquer la suivante</p>
+
+<main class="parcours-scene">
+  <div class="ruban"></div>
+  <div class="noeuds">
+
+    <div class="noeud-leçon complete">
+      <div class="pastille">
+        ✓
+        <svg class="cauris obtenu anneau-cauris" viewBox="0 0 100 60">
+          <path class="coquille" d="M8 30 C8 8 28 3 50 3 C72 3 92 8 92 30 C92 52 72 57 50 57 C28 57 8 52 8 30 Z"/>
+        </svg>
+      </div>
+      <div class="info-leçon">
+        <div class="nom-leçon">Salutations</div>
+        <div class="etat-leçon">Terminée</div>
+      </div>
+    </div>
+
+    <div class="noeud-leçon complete">
+      <div class="pastille">
+        ✓
+        <svg class="cauris obtenu anneau-cauris" viewBox="0 0 100 60">
+          <path class="coquille" d="M8 30 C8 8 28 3 50 3 C72 3 92 8 92 30 C92 52 72 57 50 57 C28 57 8 52 8 30 Z"/>
+        </svg>
+      </div>
+      <div class="info-leçon">
+        <div class="nom-leçon">Nombres</div>
+        <div class="etat-leçon">Terminée</div>
+      </div>
+    </div>
+
+    <div class="noeud-leçon active">
+      <div class="pastille">👪</div>
+      <div class="info-leçon">
+        <div class="nom-leçon">Famille</div>
+        <div class="etat-leçon">● Commencer</div>
+      </div>
+    </div>
+
+    <div class="noeud-leçon verrouille">
+      <div class="pastille">🔒</div>
+      <div class="info-leçon">
+        <div class="nom-leçon">Corps humain</div>
+        <div class="etat-leçon">Verrouillée</div>
+      </div>
+    </div>
+
+    <div class="noeud-leçon verrouille">
+      <div class="pastille">🔒</div>
+      <div class="info-leçon">
+        <div class="nom-leçon">Nourriture &amp; boissons</div>
+        <div class="etat-leçon">Verrouillée</div>
+      </div>
+    </div>
+
+    <div class="noeud-leçon verrouille">
+      <div class="pastille">🔒</div>
+      <div class="info-leçon">
+        <div class="nom-leçon">Verbes courants</div>
+        <div class="etat-leçon">Verrouillée</div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+</body>
+</html>
