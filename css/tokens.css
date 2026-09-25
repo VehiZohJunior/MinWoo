@@ -1,0 +1,105 @@
+/* MinWoo — Design tokens
+   Règles complètes documentées dans CLAUDE.md à la racine du repo. */
+
+:root {
+  /* --- Couleurs de base (mesurées sur tissus de référence, voir /references) --- */
+  --encre: #171B2E;
+  --indigo-tisse: #303566;
+  --bleu-delave: #6E76A0;
+  --coton: #F2EDE2;
+  --ivoire-cauris: #E8DEC7;
+  --raphia: #B7A582;
+
+  /* --- Braise : couleur signature MinWoo (usage sobre, jamais diluée) --- */
+  --braise: #B7431E;
+  --braise-sombre: #8F3417;
+
+  /* --- Accents kita : réservés aux événements (10% de l'interface, jamais en continu) --- */
+  --or-parure: #C08B3E;
+  --jaune-kita: #D9A226;
+  --corail-alerte: #A83A44;
+  --vert-profond: #3F6B3A;
+  --bleu-royal: #2D3E8F;
+
+  /* --- Rôles sémantiques (mode clair = défaut) --- */
+  --bg: var(--coton);
+  --surface: var(--ivoire-cauris);
+  --surface-elevee: #ffffff;
+  --texte: var(--encre);
+  --texte-att: var(--bleu-delave);
+  --bordure: var(--raphia);
+  --primaire: var(--braise);
+  --primaire-hover: var(--braise-sombre);
+  --erreur: var(--corail-alerte);
+  --recompense: var(--or-parure);
+
+  /* --- Typographie --- */
+  --police-titres: 'Fraunces', Georgia, serif;
+  --police-texte: 'Noto Sans', -apple-system, "Segoe UI", sans-serif;
+
+  --taille-xs: 0.8rem;
+  --taille-sm: 0.9rem;
+  --taille-base: 1rem;
+  --taille-lg: 1.15rem;
+  --taille-xl: 1.5rem;
+  --taille-2xl: 2rem;
+  --taille-3xl: 2.75rem;
+
+  /* --- Espacements --- */
+  --espace-1: 4px;
+  --espace-2: 8px;
+  --espace-3: 12px;
+  --espace-4: 16px;
+  --espace-5: 24px;
+  --espace-6: 32px;
+  --espace-7: 48px;
+  --espace-8: 64px;
+
+  /* --- Rayons & ombres (ombres teintées encre, jamais noir pur) --- */
+  --rayon-sm: 8px;
+  --rayon-md: 12px;
+  --rayon-lg: 16px;
+  --rayon-xl: 24px;
+  --rayon-full: 999px;
+  --ombre-sm: 0 2px 8px rgba(23,27,46,0.08);
+  --ombre-md: 0 6px 20px rgba(23,27,46,0.12);
+
+  /* --- Mouvement --- */
+  --duree-rapide: 150ms;
+  --duree-base: 250ms;
+  --duree-celebration: 1800ms;
+  --easing: cubic-bezier(0.4,0,0.2,1);
+}
+
+/* --- Mode sombre : "indigo nuit", soigné, pas juste un inversé automatique --- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: var(--encre);
+    --surface: var(--indigo-tisse);
+    --surface-elevee: #23274a;
+    --texte: var(--coton);
+    --texte-att: #9AA2C9;
+    --bordure: rgba(242,237,226,0.28);
+    --ombre-sm: 0 2px 8px rgba(0,0,0,0.3);
+    --ombre-md: 0 6px 20px rgba(0,0,0,0.4);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: var(--encre);
+  --surface: var(--indigo-tisse);
+  --surface-elevee: #23274a;
+  --texte: var(--coton);
+  --texte-att: #9AA2C9;
+  --bordure: rgba(242,237,226,0.28);
+  --ombre-sm: 0 2px 8px rgba(0,0,0,0.3);
+  --ombre-md: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* --- Respect du confort utilisateur : pas d'animation si demandé --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

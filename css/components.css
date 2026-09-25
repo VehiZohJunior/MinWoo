@@ -1,0 +1,79 @@
+/* MinWoo — Composants de base */
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--texte);
+  font-family: var(--police-texte); line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, .titre { font-family: var(--police-titres); letter-spacing: -0.01em; }
+a { color: inherit; }
+
+/* --- Boutons --- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 28px; border-radius: var(--rayon-md); font-weight: 700; font-size: var(--taille-base);
+  border: 2px solid transparent; cursor: pointer; text-decoration: none;
+  transition: background var(--duree-rapide) var(--easing), transform var(--duree-rapide) var(--easing);
+  font-family: var(--police-texte);
+}
+.btn:active { transform: scale(0.97); }
+.btn-primaire { background: var(--primaire); color: white; }
+.btn-primaire:hover { background: var(--primaire-hover); }
+.btn-secondaire { background: transparent; border-color: var(--bordure); color: var(--texte); }
+.btn-secondaire:hover { border-color: var(--primaire); color: var(--primaire); }
+
+/* --- Cartes / surfaces --- */
+.carte {
+  background: var(--surface); border-radius: var(--rayon-lg);
+  padding: var(--espace-5); box-shadow: var(--ombre-sm);
+}
+
+/* --- Badge --- */
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--surface-elevee); border: 1px solid var(--bordure);
+  color: var(--primaire); font-weight: 700; font-size: var(--taille-xs);
+  padding: 6px 14px; border-radius: var(--rayon-full);
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+
+/* --- Cauris (icône signature) --- */
+.cauris { width: 32px; height: 20px; display: inline-block; flex-shrink: 0; }
+.cauris .coquille { fill: var(--surface); stroke: var(--bordure); stroke-width: 3.5; }
+.cauris .fente, .cauris .dent { stroke: var(--indigo-tisse); }
+.cauris.obtenu .coquille { fill: var(--recompense); stroke: var(--or-parure); }
+.cauris.obtenu .fente, .cauris.obtenu .dent { stroke: #5A3E12; }
+
+/* --- Collier de perles (progression d'exercice) --- */
+.collier { display: flex; gap: 8px; align-items: center; }
+.perle {
+  width: 22px; height: 22px; border-radius: 50%;
+  transition: background var(--duree-base) var(--easing), box-shadow var(--duree-base) var(--easing);
+}
+.perle.faite { background: var(--recompense); box-shadow: 0 0 0 3px rgba(192,139,62,0.22); }
+.perle.a-faire { background: var(--surface); border: 2px solid var(--bordure); }
+
+/* --- Tuile de langue (écran d'accueil) --- */
+.tuile-langue {
+  position: relative; overflow: hidden; border-radius: var(--rayon-xl);
+  padding: var(--espace-6) var(--espace-5); min-height: 148px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  background: var(--surface); box-shadow: var(--ombre-sm);
+  text-decoration: none; color: var(--texte);
+  transition: transform var(--duree-base) var(--easing), box-shadow var(--duree-base) var(--easing);
+}
+.tuile-langue:active { transform: scale(0.98); }
+.tuile-langue .bande-haut { position: absolute; top: 0; left: 0; right: 0; height: 6px; }
+.tuile-langue .nom { font-family: var(--police-titres); font-size: var(--taille-xl); font-weight: 600; }
+.tuile-langue .meta { font-size: var(--taille-sm); color: var(--texte-att); margin-top: 4px; }
+.tuile-langue.a-venir { opacity: 0.55; }
+.tuile-langue.a-venir .bande-haut { background: repeating-linear-gradient(45deg, var(--bordure) 0 6px, transparent 6px 12px); }
+
+/* --- En-tête app --- */
+.entete-app {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--espace-4) var(--espace-5);
+}
+.marque { font-family: var(--police-titres); font-weight: 700; font-size: 1.3rem; color: var(--texte); }
+.marque .accent { color: var(--braise); }

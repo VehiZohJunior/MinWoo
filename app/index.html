@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MinWoo — Choisis ta langue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/patterns.css">
+<link rel="stylesheet" href="../css/components.css">
+<style>
+  .ecran { max-width: 520px; margin: 0 auto; padding: 0 var(--espace-4) var(--espace-8); min-height: 100vh; }
+  .intro { padding: var(--espace-6) 0 var(--espace-5); text-align: center; }
+  .intro h1 { font-size: var(--taille-2xl); margin: 0 0 6px; }
+  .intro p { color: var(--texte-att); margin: 0; font-size: var(--taille-base); }
+
+  .tuiles { display: flex; flex-direction: column; gap: var(--espace-4); }
+
+  .tuile-langue { min-height: 132px; padding: 0; justify-content: flex-start; }
+  .tuile-langue .motif-tuile { height: 56px; position: relative; overflow: hidden; }
+  .tuile-langue .contenu { padding: var(--espace-4) var(--espace-5) var(--espace-5); }
+  .tuile-langue .nom-ligne { display: flex; align-items: baseline; justify-content: space-between; }
+  .tuile-langue .fleche { color: var(--texte-att); font-size: 1.3rem; transition: transform var(--duree-rapide) var(--easing); }
+  .tuile-langue:hover .fleche { transform: translateX(4px); color: var(--primaire); }
+
+  .motif-yacouba {
+    background: repeating-linear-gradient(115deg,
+      var(--encre) 0 16px, var(--coton) 16px 20px,
+      var(--braise) 20px 30px, var(--coton) 30px 34px,
+      var(--encre) 34px 54px, var(--coton) 54px 58px);
+  }
+  .motif-toura {
+    background: repeating-linear-gradient(115deg,
+      var(--encre) 0 20px, var(--coton) 20px 24px,
+      var(--or-parure) 24px 30px, var(--coton) 30px 34px,
+      var(--indigo-tisse) 34px 50px, var(--coton) 50px 54px);
+  }
+  .motif-gouro {
+    background: repeating-linear-gradient(115deg, var(--raphia) 0 18px, transparent 18px 36px);
+    opacity: 0.5;
+  }
+
+  .statut-langue { font-size: var(--taille-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+  .statut-langue.actif { color: var(--braise); }
+  .statut-langue.venir { color: var(--texte-att); }
+
+  .pied-page { text-align: center; margin-top: var(--espace-7); }
+  .pied-page a { color: var(--texte-att); font-size: var(--taille-sm); }
+</style>
+</head>
+<body>
+<div class="motif-tisse"></div>
+
+<div class="entete-app">
+  <span class="marque">Min<span class="accent">Woo</span></span>
+  <span class="badge">🔥 Série de 0 jour</span>
+</div>
+
+<main class="ecran">
+  <div class="intro">
+    <h1 class="titre">Quelle langue veux-tu apprendre ?</h1>
+    <p>Choisis une langue pour commencer ton parcours</p>
+  </div>
+
+  <div class="tuiles">
+    <a class="tuile-langue" href="#" aria-label="Apprendre le Yacouba">
+      <div class="motif-tuile motif-yacouba"></div>
+      <div class="contenu">
+        <div class="nom-ligne">
+          <span class="nom">Yacouba</span>
+          <span class="fleche">→</span>
+        </div>
+        <div class="meta">Dan · région du Tonkpi</div>
+        <div class="statut-langue actif" style="margin-top:8px">● Corpus en cours de collecte</div>
+      </div>
+    </a>
+
+    <a class="tuile-langue" href="#" aria-label="Apprendre le Toura">
+      <div class="motif-tuile motif-toura"></div>
+      <div class="contenu">
+        <div class="nom-ligne">
+          <span class="nom">Toura</span>
+          <span class="fleche">→</span>
+        </div>
+        <div class="meta">Région de Biankouma</div>
+        <div class="statut-langue actif" style="margin-top:8px">● Corpus en cours de collecte</div>
+      </div>
+    </a>
+
+    <div class="tuile-langue a-venir" aria-disabled="true">
+      <div class="motif-tuile motif-gouro"></div>
+      <div class="contenu">
+        <div class="nom-ligne">
+          <span class="nom">Gouro</span>
+        </div>
+        <div class="meta">Région de Bouaflé</div>
+        <div class="statut-langue venir" style="margin-top:8px">○ Bientôt disponible</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pied-page">
+    <a href="../index.html">← Retour au site MinWoo</a>
+  </div>
+</main>
+
+</body>
+</html>
