@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MinWoo — Étape 1 : palette & motifs (à valider)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Space+Grotesk:wght@500;700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap">
+<style>
+  :root {
+    --indigo-nuit: #14213D;
+    --indigo-tisse: #2B3A6B;
+    --bleu-delave: #7280A3;
+    --coton: #F2EDE2;
+    --ivoire-cauris: #E8DEC7;
+    --raphia: #B7A582;
+    --or-parure: #D6A857;
+    --jaune-kita: #EFB93E;
+    --orange-kita: #D9721F;
+    --rouge-corail: #B0301E;
+    --vert-kita: #4F8A3E;
+    --bleu-royal: #2A45A8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--coton); color: var(--indigo-nuit);
+    font-family: 'Noto Sans', sans-serif; line-height: 1.6; padding-bottom: 80px;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+  h1 { font-family: 'Fraunces', serif; font-size: 2rem; margin-bottom: 4px; }
+  .sub { color: var(--bleu-delave); font-weight: 600; margin-bottom: 40px; }
+  h2 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem;
+    margin: 56px 0 8px; padding-top: 24px; border-top: 2px solid var(--raphia);
+  }
+  h2 .step { color: var(--orange-kita); }
+  .note { color: var(--bleu-delave); font-size: 0.9rem; margin-bottom: 24px; max-width: 700px; }
+
+  /* --- Section A: images + chips --- */
+  .ref-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .ref-card { background: var(--ivoire-cauris); border-radius: 12px; overflow: hidden; }
+  .ref-card img { width: 100%; height: 140px; object-fit: cover; display: block; }
+  .chips { display: flex; flex-wrap: wrap; gap: 4px; padding: 8px; }
+  .chip { width: 22px; height: 22px; border-radius: 5px; border: 1px solid rgba(0,0,0,0.15); }
+  .ref-label { font-size: 0.72rem; text-align: center; padding-bottom: 6px; color: var(--indigo-nuit); font-weight: 600; }
+
+  /* --- Section B: palette tokens --- */
+  .proportion-bar { display: flex; height: 28px; border-radius: 8px; overflow: hidden; margin-bottom: 28px; font-size: 0.75rem; }
+  .proportion-bar div { display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; }
+  .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+  .swatch { border-radius: 10px; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); }
+  .swatch .fill { height: 64px; }
+  .swatch .label { background: white; padding: 8px 10px; font-size: 0.78rem; }
+  .swatch .label b { display: block; font-size: 0.82rem; }
+  .swatch .label span { color: var(--bleu-delave); font-family: monospace; }
+
+  /* --- Section C: motifs --- */
+  .weave-strip {
+    height: 64px; border-radius: 10px; margin-bottom: 14px;
+    background: repeating-linear-gradient(
+      100deg,
+      var(--indigo-nuit) 0px, var(--indigo-nuit) 22px,
+      var(--coton) 22px, var(--coton) 28px,
+      var(--indigo-tisse) 28px, var(--indigo-tisse) 40px,
+      var(--coton) 40px, var(--coton) 44px,
+      var(--indigo-nuit) 44px, var(--indigo-nuit) 70px,
+      var(--or-parure) 70px, var(--or-parure) 76px,
+      var(--indigo-tisse) 76px, var(--indigo-tisse) 96px,
+      var(--coton) 96px, var(--coton) 100px
+    );
+  }
+  .grain-demo {
+    height: 100px; border-radius: 10px; margin-bottom: 14px; position: relative;
+    background: var(--ivoire-cauris);
+    overflow: hidden;
+  }
+  .grain-demo::after {
+    content: ''; position: absolute; inset: 0; opacity: 1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.08  0 0 0 0 0.13  0 0 0 0 0.24  0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .kita-checker {
+    height: 100px; border-radius: 10px; margin-bottom: 14px;
+    background-color: var(--indigo-nuit);
+    background-image:
+      linear-gradient(45deg, var(--orange-kita) 25%, transparent 25%, transparent 75%, var(--orange-kita) 75%, var(--orange-kita)),
+      linear-gradient(45deg, var(--orange-kita) 25%, transparent 25%, transparent 75%, var(--orange-kita) 75%, var(--orange-kita));
+    background-position: 0 0, 20px 20px;
+    background-size: 40px 40px;
+  }
+  .pattern-label { font-size: 0.85rem; color: var(--bleu-delave); margin: -8px 0 20px; }
+
+  .cauris-row { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+  .cauris-row svg { width: 46px; height: 46px; }
+  .beads-row { display: flex; gap: 8px; align-items: center; }
+  .bead { width: 26px; height: 26px; border-radius: 50%; }
+  .bead.filled { background: var(--or-parure); box-shadow: 0 0 0 3px rgba(214,168,87,0.25); }
+  .bead.empty { background: var(--ivoire-cauris); border: 2px solid var(--raphia); }
+
+  /* --- Section D: typography --- */
+  .font-card { background: var(--ivoire-cauris); border-radius: 14px; padding: 24px; margin-bottom: 18px; }
+  .font-card .sample { font-size: 2.4rem; margin: 6px 0; }
+  .font-card .justif { font-size: 0.88rem; color: var(--indigo-nuit); max-width: 640px; }
+  .f-fraunces .sample { font-family: 'Fraunces', serif; font-weight: 600; }
+  .f-clash .sample { font-family: 'Clash Display', sans-serif; font-weight: 700; }
+  .f-grotesk .sample { font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
+  .diacritics-test { background: white; border-radius: 14px; padding: 24px; }
+  .diacritics-test .big { font-family: 'Noto Sans', sans-serif; font-size: 1.6rem; margin: 10px 0; }
+
+  .validate-box {
+    background: var(--indigo-nuit); color: var(--coton); border-radius: 16px;
+    padding: 28px 30px; margin-top: 50px; text-align: center;
+  }
+  .validate-box b { color: var(--or-parure); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>MinWoo — Système visuel, étape 1</h1>
+  <p class="sub">Analyse colorimétrique mesurée + aperçu des motifs générés — en attente de validation</p>
+
+  <h2><span class="step">01·</span> Couleurs extraites des références (par code)</h2>
+  <p class="note">Zones de tissu recadrées (torse/robe), quantization median-cut Pillow. Les 4 puces = les couleurs les plus fréquentes mesurées sur chaque photo.</p>
+  <div class="ref-grid">
+    <div class="ref-card">
+      <img src="indigo-1.webp" alt="indigo 1">
+      <div class="chips">
+        <div class="chip" style="background:#0e1a37"></div>
+        <div class="chip" style="background:#d3b26b"></div>
+        <div class="chip" style="background:#af8253"></div>
+        <div class="chip" style="background:#dad9d1"></div>
+      </div>
+      <div class="ref-label">Pagne indigo 1</div>
+    </div>
+    <div class="ref-card">
+      <img src="indigo-2.png" alt="indigo 2">
+      <div class="chips">
+        <div class="chip" style="background:#141219"></div>
+        <div class="chip" style="background:#2b3a55"></div>
+        <div class="chip" style="background:#666e82"></div>
+        <div class="chip" style="background:#80312a"></div>
+      </div>
+      <div class="ref-label">Pagne indigo 2</div>
+    </div>
+    <div class="ref-card">
+      <img src="indigo-3.png" alt="indigo 3">
+      <div class="chips">
+        <div class="chip" style="background:#0e273b"></div>
+        <div class="chip" style="background:#649547"></div>
+        <div class="chip" style="background:#a3a5a0"></div>
+        <div class="chip" style="background:#dddddd"></div>
+      </div>
+      <div class="ref-label">Pagne indigo 3</div>
+    </div>
+    <div class="ref-card">
+      <img src="indigo-4.png" alt="indigo 4">
+      <div class="chips">
+        <div class="chip" style="background:#1e1d2e"></div>
+        <div class="chip" style="background:#67483a"></div>
+        <div class="chip" style="background:#9e8d87"></div>
+        <div class="chip" style="background:#b3aeac"></div>
+      </div>
+      <div class="ref-label">Pagne indigo 4</div>
+    </div>
+    <div class="ref-card">
+      <img src="kita-6.png" alt="kita 6">
+      <div class="chips">
+        <div class="chip" style="background:#c08257"></div>
+        <div class="chip" style="background:#dfbc85"></div>
+        <div class="chip" style="background:#f4d388"></div>
+        <div class="chip" style="background:#37211c"></div>
+      </div>
+      <div class="ref-label">Kita 6</div>
+    </div>
+    <div class="ref-card">
+      <img src="kita-7.png" alt="kita 7">
+      <div class="chips">
+        <div class="chip" style="background:#d7984d"></div>
+        <div class="chip" style="background:#b07037"></div>
+        <div class="chip" style="background:#b23b20"></div>
+        <div class="chip" style="background:#99c37f"></div>
+      </div>
+      <div class="ref-label">Kita 7</div>
+    </div>
+    <div class="ref-card">
+      <img src="kita-8.png" alt="kita 8">
+      <div class="chips">
+        <div class="chip" style="background:#a22014"></div>
+        <div class="chip" style="background:#b7682d"></div>
+        <div class="chip" style="background:#e0953a"></div>
+        <div class="chip" style="background:#1d291f"></div>
+      </div>
+      <div class="ref-label">Kita 8</div>
+    </div>
+    <div class="ref-card">
+      <img src="mixed-5.png" alt="mixed 5">
+      <div class="chips">
+        <div class="chip" style="background:#0d0813"></div>
+        <div class="chip" style="background:#3c4050"></div>
+        <div class="chip" style="background:#c28d7b"></div>
+        <div class="chip" style="background:#704032"></div>
+      </div>
+      <div class="ref-label">Transition (5)</div>
+    </div>
+  </div>
+
+  <h2><span class="step">02·</span> Palette finale (règle 70 / 20 / 10)</h2>
+  <div class="proportion-bar">
+    <div style="width:70%; background:var(--indigo-tisse)">70% Indigo &amp; coton</div>
+    <div style="width:20%; background:var(--raphia)">20% Ivoire &amp; raphia</div>
+    <div style="width:10%; background:var(--orange-kita)">10% Kita</div>
+  </div>
+  <div class="swatch-grid">
+    <div class="swatch"><div class="fill" style="background:var(--indigo-nuit)"></div><div class="label"><b>Indigo nuit</b><span>#14213D</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--indigo-tisse)"></div><div class="label"><b>Indigo tissé</b><span>#2B3A6B</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--bleu-delave)"></div><div class="label"><b>Bleu délavé</b><span>#7280A3</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--coton); border-bottom:1px solid #ddd"></div><div class="label"><b>Coton</b><span>#F2EDE2</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--ivoire-cauris)"></div><div class="label"><b>Ivoire cauris</b><span>#E8DEC7</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--raphia)"></div><div class="label"><b>Raphia</b><span>#B7A582</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--or-parure)"></div><div class="label"><b>Or parure</b><span>#D6A857</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--jaune-kita)"></div><div class="label"><b>Jaune kita</b><span>#EFB93E</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--orange-kita)"></div><div class="label"><b>Orange kita</b><span>#D9721F</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--rouge-corail)"></div><div class="label"><b>Rouge corail</b><span>#B0301E</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--vert-kita)"></div><div class="label"><b>Vert kita</b><span>#4F8A3E</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--bleu-royal)"></div><div class="label"><b>Bleu royal</b><span>#2A45A8</span></div></div>
+  </div>
+
+  <h2><span class="step">03·</span> Motifs tissés générés (SVG/CSS, aucune photo)</h2>
+
+  <p class="pattern-label">Bandes tissées irrégulières — en-têtes, séparateurs, fonds de section (univers indigo, usage quotidien)</p>
+  <div class="weave-strip"></div>
+
+  <p class="pattern-label">Grain textile léger — superposé aux fonds clairs pour évoquer le coton tissé</p>
+  <div class="grain-demo"></div>
+
+  <p class="pattern-label">Damier kita — réservé aux moments de célébration (fin de leçon, badge, montée de niveau)</p>
+  <div class="kita-checker"></div>
+
+  <p class="pattern-label">Cauris — forme signature (contour = à gagner, plein = obtenu)</p>
+  <div class="cauris-row">
+    <svg viewBox="0 0 100 60">
+      <path d="M8 30 C8 8 28 3 50 3 C72 3 92 8 92 30 C92 52 72 57 50 57 C28 57 8 52 8 30 Z" fill="#E8DEC7" stroke="#7280A3" stroke-width="3.5"/>
+      <line x1="26" y1="30" x2="74" y2="30" stroke="#2B3A6B" stroke-width="3"/>
+      <line x1="33" y1="24" x2="33" y2="36" stroke="#2B3A6B" stroke-width="2.5"/>
+      <line x1="43" y1="21" x2="43" y2="39" stroke="#2B3A6B" stroke-width="2.5"/>
+      <line x1="57" y1="21" x2="57" y2="39" stroke="#2B3A6B" stroke-width="2.5"/>
+      <line x1="67" y1="24" x2="67" y2="36" stroke="#2B3A6B" stroke-width="2.5"/>
+    </svg>
+    <svg viewBox="0 0 100 60">
+      <path d="M8 30 C8 8 28 3 50 3 C72 3 92 8 92 30 C92 52 72 57 50 57 C28 57 8 52 8 30 Z" fill="#D6A857" stroke="#9A7530" stroke-width="3.5"/>
+      <line x1="26" y1="30" x2="74" y2="30" stroke="#5A3E12" stroke-width="3"/>
+      <line x1="33" y1="24" x2="33" y2="36" stroke="#5A3E12" stroke-width="2.5"/>
+      <line x1="43" y1="21" x2="43" y2="39" stroke="#5A3E12" stroke-width="2.5"/>
+      <line x1="57" y1="21" x2="57" y2="39" stroke="#5A3E12" stroke-width="2.5"/>
+      <line x1="67" y1="24" x2="67" y2="36" stroke="#5A3E12" stroke-width="2.5"/>
+    </svg>
+    <span style="color:var(--bleu-delave); font-size:0.85rem">à gagner → obtenu</span>
+  </div>
+
+  <p class="pattern-label" style="margin-top:24px">Collier de perles — barre de progression d'exercice</p>
+  <div class="beads-row">
+    <div class="bead filled"></div><div class="bead filled"></div><div class="bead filled"></div>
+    <div class="bead empty"></div><div class="bead empty"></div><div class="bead empty"></div><div class="bead empty"></div>
+  </div>
+
+  <h2><span class="step">04·</span> Typographie</h2>
+
+  <div class="font-card f-fraunces">
+    <div class="sample">MinWoo · Yɛ ɔ tɔ</div>
+    <p class="justif"><b>Fraunces</b> (Google Fonts, variable) — serif d'affichage avec courbes "wonky" ajustables : l'irrégularité contrôlée de ses formes évoque le tissage à bandes irrégulières sans jamais citer un motif "africain" littéral. Chaleureux, élégant, très large couverture Unicode.</p>
+  </div>
+  <div class="font-card f-clash">
+    <div class="sample">MinWoo · Yɛ ɔ tɔ</div>
+    <p class="justif"><b>Clash Display</b> (Fontshare) — sans-serif géométrique aux formes blocs, en écho au damier tissé. Fort impact pour titres de section et l'écran de réussite. ⚠️ à vérifier : couverture des diacritiques API/IPA plus limitée que les polices Google — usage restreint aux titres courts sans caractères spéciaux.</p>
+  </div>
+  <div class="font-card f-grotesk">
+    <div class="sample">MinWoo · Yɛ ɔ tɔ</div>
+    <p class="justif"><b>Space Grotesk</b> (Google Fonts, variable) — géométrique à caractère (g, y distinctifs), renforce la crédibilité "sérieuse/scientifique" du projet tout en restant moderne. Bonne couverture Unicode étendue.</p>
+  </div>
+
+  <div class="diacritics-test">
+    <b>Police de texte courant — Noto Sans</b> (choisie spécifiquement pour sa couverture Unicode quasi-totale, conçue par Google pour ne jamais afficher de "tofu" □ sur les caractères spéciaux)
+    <div class="big">Test des tons et voyelles ouvertes : ɛ́ ɛ̀ ɛ̄ ɔ́ ɔ̀ ɔ̃ ŋ̀ ā ń gbɛ̀ kɔ́lɔ̄</div>
+    <div class="big" style="font-weight:700">En gras : ɛ́ ɛ̀ ɔ́ ɔ̀ ŋ̀ ā ɔ̃</div>
+  </div>
+
+  <div class="validate-box">
+    Étape 1 terminée — palette mesurée + motifs générés + typographie proposée.<br>
+    <b>En attente de votre validation</b> avant de construire le système de composants (étape 2).
+  </div>
+
+</div>
+</body>
+</html>
