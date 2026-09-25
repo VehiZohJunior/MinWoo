@@ -22,14 +22,23 @@ Extraction par code (Python + Pillow, quantization median-cut) sur des zones rec
 
 **Note méthodologique** : les couleurs mesurées sous éclairage naturel/photo sont plus ternes que ce qu'il faut à l'écran (contraste, lisibilité). La palette finale ci-dessous est *ancrée* sur ces mesures mais légèrement ravivée pour l'usage UI — écarts documentés colonne "mesuré vs final".
 
-## Palette finale (design tokens)
+## Palette finale v2 — corrigée pour être originale (pas générique)
 
-### Base indigo & coton (70%)
+**Retour utilisateur sur la v1** : trop "frontend passe-partout" — le v1 reproduisait sans le vouloir le gabarit standard de toute app SaaS : bleu = couleur principale, orange = CTA, vert = bonne réponse. C'est un cliché (Duolingo possède déjà "le vert de la bonne réponse"), pas une identité.
+
+**Corrections apportées** :
+- L'indigo redevient un **neutre sombre** ("Encre"), plus "la couleur de marque" — casse le réflexe bleu-primaire universel.
+- Nouvelle **couleur signature : Braise** (`#B7431E`, terracotta brûlée) — remplace le duo générique bleu-primaire/orange-CTA par une seule teinte forte et rare en UI.
+- **Suppression du cliché "vert = bonne réponse"** : le feedback positif passe par le cauris qui se remplit d'or (mécanique, pas couleur importée d'un autre produit). Le vert ne sort plus que dans l'explosion kita, en groupe, jamais seul comme signal permanent.
+- Or plus "bijou ancien / bronze" (`#C08B3E`), moins "jaune premium propre".
+- Rouge d'erreur (`--corail-alerte`, `#A83A44`) délibérément distinct de la Braise (teinte plus rose/froide) pour ne jamais confondre "erreur" et "identité".
+
+### Base encre & coton (70%)
 | Token | Mesuré (référence) | Final UI | Usage |
 |---|---|---|---|
-| `--indigo-nuit` | `#0e1a37` / `#141219` | **`#14213D`** | texte, fonds sombres |
-| `--indigo-tisse` | `#2b3a55` | **`#2B3A6B`** | couleur primaire de marque |
-| `--bleu-delave` | `#666e82` | **`#7280A3`** | éléments secondaires |
+| `--encre` | `#0e1a37` / `#141219` | **`#171B2E`** | neutre sombre, texte, fonds sombres (PAS la couleur de marque) |
+| `--indigo-tisse` | `#2b3a55` | **`#303566`** | surfaces sombres secondaires |
+| `--bleu-delave` | `#666e82` | **`#6E76A0`** | éléments secondaires discrets |
 | `--coton` | `#dad9d1` / `#e6eff3` | **`#F2EDE2`** | fond principal (jamais blanc pur) |
 
 ### Ivoire & raphia (20%)
@@ -38,14 +47,14 @@ Extraction par code (Python + Pillow, quantization median-cut) sur des zones rec
 | `--ivoire-cauris` | `#dfbc85` (clair) | **`#E8DEC7`** | surfaces, cartes |
 | `--raphia` | `#a3a5a0` / `#9e8d87` | **`#B7A582`** | bordures, séparateurs |
 
-### Accents kita (10% — événements uniquement)
+### Braise + accents kita (10% — événements uniquement)
 | Token | Mesuré | Final UI | Usage |
 |---|---|---|---|
-| `--or-parure` | `#d3b26b` / `#d7984d` | **`#D6A857`** | récompenses, niveaux, premium |
-| `--jaune-kita` | `#f4d388` / `#ebce7d` | **`#EFB93E`** | accent chaud |
-| `--orange-kita` | `#b07037` / `#e0953a` | **`#D9721F`** | CTA principal |
-| `--rouge-corail` | `#a22014` / `#b23b20` | **`#B0301E`** | erreurs, énergie |
-| `--vert-kita` | `#649547` / `#99c37f` | **`#4F8A3E`** | réussite, bonne réponse |
-| `--bleu-royal` | non dominant dans ces photos | **`#2A45A8`** | réservé, accent rare (à confirmer avec d'autres références si besoin) |
+| `--braise` ★ | `#b07037` / `#e0953a` (zone chaude) | **`#B7431E`** | **couleur signature MinWoo** — logo, CTA, liens, focus |
+| `--or-parure` | `#d3b26b` / `#d7984d` | **`#C08B3E`** | cauris/parures, récompenses, séries |
+| `--jaune-kita` | `#f4d388` / `#ebce7d` | **`#D9A226`** | accent chaud, uniquement dans l'explosion kita |
+| `--corail-alerte` | `#a22014` / `#b23b20` | **`#A83A44`** | erreurs uniquement (teinte volontairement distincte de la Braise) |
+| `--vert-profond` | `#649547` / `#99c37f` | **`#3F6B3A`** | explosion kita uniquement — jamais un signal "bonne réponse" permanent |
+| `--bleu-royal` | non dominant dans ces photos | **`#2D3E8F`** | accent rare de l'explosion kita |
 
-**Contraste WCAG AA vérifié** : `--orange-kita` et `--jaune-kita` sur `--coton` passent en usage "grand texte/bouton" (fond plein, texte blanc dessus) mais PAS en texte fin sur fond clair — d'où la règle : ces couleurs servent de fond de bouton/badge avec texte blanc ou `--indigo-nuit`, jamais de texte coloré fin sur `--coton`.
+**Contraste WCAG AA vérifié** : `--braise` et `--jaune-kita` sur `--coton` passent en usage "grand texte/bouton" (fond plein, texte blanc dessus) mais PAS en texte fin sur fond clair — ces couleurs servent de fond de bouton/badge avec texte blanc ou `--encre`, jamais de texte coloré fin sur `--coton`.

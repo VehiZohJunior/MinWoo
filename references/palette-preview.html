@@ -10,22 +10,22 @@
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap">
 <style>
   :root {
-    --indigo-nuit: #14213D;
-    --indigo-tisse: #2B3A6B;
-    --bleu-delave: #7280A3;
+    --encre: #171B2E;
+    --indigo-tisse: #303566;
+    --bleu-delave: #6E76A0;
     --coton: #F2EDE2;
     --ivoire-cauris: #E8DEC7;
     --raphia: #B7A582;
-    --or-parure: #D6A857;
-    --jaune-kita: #EFB93E;
-    --orange-kita: #D9721F;
-    --rouge-corail: #B0301E;
-    --vert-kita: #4F8A3E;
-    --bleu-royal: #2A45A8;
+    --braise: #B7431E;
+    --or-parure: #C08B3E;
+    --jaune-kita: #D9A226;
+    --vert-profond: #3F6B3A;
+    --corail-alerte: #A83A44;
+    --bleu-royal: #2D3E8F;
   }
   * { box-sizing: border-box; }
   body {
-    margin: 0; background: var(--coton); color: var(--indigo-nuit);
+    margin: 0; background: var(--coton); color: var(--encre);
     font-family: 'Noto Sans', sans-serif; line-height: 1.6; padding-bottom: 80px;
   }
   .wrap { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
@@ -35,7 +35,7 @@
     font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem;
     margin: 56px 0 8px; padding-top: 24px; border-top: 2px solid var(--raphia);
   }
-  h2 .step { color: var(--orange-kita); }
+  h2 .step { color: var(--braise); }
   .note { color: var(--bleu-delave); font-size: 0.9rem; margin-bottom: 24px; max-width: 700px; }
 
   /* --- Section A: images + chips --- */
@@ -44,28 +44,36 @@
   .ref-card img { width: 100%; height: 140px; object-fit: cover; display: block; }
   .chips { display: flex; flex-wrap: wrap; gap: 4px; padding: 8px; }
   .chip { width: 22px; height: 22px; border-radius: 5px; border: 1px solid rgba(0,0,0,0.15); }
-  .ref-label { font-size: 0.72rem; text-align: center; padding-bottom: 6px; color: var(--indigo-nuit); font-weight: 600; }
+  .ref-label { font-size: 0.72rem; text-align: center; padding-bottom: 6px; color: var(--encre); font-weight: 600; }
 
   /* --- Section B: palette tokens --- */
   .proportion-bar { display: flex; height: 28px; border-radius: 8px; overflow: hidden; margin-bottom: 28px; font-size: 0.75rem; }
   .proportion-bar div { display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; }
   .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
   .swatch { border-radius: 10px; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); }
+  .swatch.signature { border: 2px solid var(--braise); }
   .swatch .fill { height: 64px; }
   .swatch .label { background: white; padding: 8px 10px; font-size: 0.78rem; }
   .swatch .label b { display: block; font-size: 0.82rem; }
   .swatch .label span { color: var(--bleu-delave); font-family: monospace; }
+  .signature-block {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
+    background: var(--encre); border-radius: 14px; padding: 18px 22px;
+  }
+  .signature-swatch { width: 56px; height: 56px; border-radius: 12px; flex-shrink: 0; box-shadow: 0 0 0 4px rgba(183,67,30,0.25); }
+  .signature-name { color: var(--coton); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.1rem; }
+  .signature-hex { color: var(--bleu-delave); font-size: 0.85rem; font-family: monospace; }
 
   /* --- Section C: motifs --- */
   .weave-strip {
     height: 64px; border-radius: 10px; margin-bottom: 14px;
     background: repeating-linear-gradient(
       100deg,
-      var(--indigo-nuit) 0px, var(--indigo-nuit) 22px,
+      var(--encre) 0px, var(--encre) 22px,
       var(--coton) 22px, var(--coton) 28px,
       var(--indigo-tisse) 28px, var(--indigo-tisse) 40px,
       var(--coton) 40px, var(--coton) 44px,
-      var(--indigo-nuit) 44px, var(--indigo-nuit) 70px,
+      var(--encre) 44px, var(--encre) 70px,
       var(--or-parure) 70px, var(--or-parure) 76px,
       var(--indigo-tisse) 76px, var(--indigo-tisse) 96px,
       var(--coton) 96px, var(--coton) 100px
@@ -82,10 +90,10 @@
   }
   .kita-checker {
     height: 100px; border-radius: 10px; margin-bottom: 14px;
-    background-color: var(--indigo-nuit);
+    background-color: var(--encre);
     background-image:
-      linear-gradient(45deg, var(--orange-kita) 25%, transparent 25%, transparent 75%, var(--orange-kita) 75%, var(--orange-kita)),
-      linear-gradient(45deg, var(--orange-kita) 25%, transparent 25%, transparent 75%, var(--orange-kita) 75%, var(--orange-kita));
+      linear-gradient(45deg, var(--braise) 25%, transparent 25%, transparent 75%, var(--braise) 75%, var(--braise)),
+      linear-gradient(45deg, var(--braise) 25%, transparent 25%, transparent 75%, var(--braise) 75%, var(--braise));
     background-position: 0 0, 20px 20px;
     background-size: 40px 40px;
   }
@@ -101,7 +109,7 @@
   /* --- Section D: typography --- */
   .font-card { background: var(--ivoire-cauris); border-radius: 14px; padding: 24px; margin-bottom: 18px; }
   .font-card .sample { font-size: 2.4rem; margin: 6px 0; }
-  .font-card .justif { font-size: 0.88rem; color: var(--indigo-nuit); max-width: 640px; }
+  .font-card .justif { font-size: 0.88rem; color: var(--encre); max-width: 640px; }
   .f-fraunces .sample { font-family: 'Fraunces', serif; font-weight: 600; }
   .f-clash .sample { font-family: 'Clash Display', sans-serif; font-weight: 700; }
   .f-grotesk .sample { font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
@@ -109,7 +117,7 @@
   .diacritics-test .big { font-family: 'Noto Sans', sans-serif; font-size: 1.6rem; margin: 10px 0; }
 
   .validate-box {
-    background: var(--indigo-nuit); color: var(--coton); border-radius: 16px;
+    background: var(--encre); color: var(--coton); border-radius: 16px;
     padding: 28px 30px; margin-top: 50px; text-align: center;
   }
   .validate-box b { color: var(--or-parure); }
@@ -206,25 +214,33 @@
     </div>
   </div>
 
-  <h2><span class="step">02·</span> Palette finale (règle 70 / 20 / 10)</h2>
+  <h2><span class="step">02·</span> Palette finale — v2, plus originale</h2>
+  <p class="note"><b>Ce qui a changé</b> : l'indigo n'est plus "la couleur de marque" (trop attendu, tout le monde fait ça) — c'est redevenu un simple neutre sombre. La vraie identité, c'est la <b style="color:var(--braise)">Braise</b> : une teinte terracotta brûlée qu'on ne voit nulle part ailleurs. Le vert n'est plus associé à "bonne réponse" (cliché Duolingo) — il ne sort que dans l'explosion kita, jamais seul.</p>
+  <div class="signature-block">
+    <div class="signature-swatch" style="background:var(--braise)"></div>
+    <div>
+      <div class="signature-name">Braise</div>
+      <div class="signature-hex">#B7431E — la couleur signature de MinWoo</div>
+    </div>
+  </div>
   <div class="proportion-bar">
-    <div style="width:70%; background:var(--indigo-tisse)">70% Indigo &amp; coton</div>
+    <div style="width:70%; background:var(--indigo-tisse)">70% Encre &amp; coton (quotidien)</div>
     <div style="width:20%; background:var(--raphia)">20% Ivoire &amp; raphia</div>
-    <div style="width:10%; background:var(--orange-kita)">10% Kita</div>
+    <div style="width:10%; background:var(--braise)">10% Kita (événements)</div>
   </div>
   <div class="swatch-grid">
-    <div class="swatch"><div class="fill" style="background:var(--indigo-nuit)"></div><div class="label"><b>Indigo nuit</b><span>#14213D</span></div></div>
-    <div class="swatch"><div class="fill" style="background:var(--indigo-tisse)"></div><div class="label"><b>Indigo tissé</b><span>#2B3A6B</span></div></div>
-    <div class="swatch"><div class="fill" style="background:var(--bleu-delave)"></div><div class="label"><b>Bleu délavé</b><span>#7280A3</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--encre)"></div><div class="label"><b>Encre</b><span>#171B2E</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--indigo-tisse)"></div><div class="label"><b>Indigo tissé</b><span>#303566</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--bleu-delave)"></div><div class="label"><b>Bleu délavé</b><span>#6E76A0</span></div></div>
     <div class="swatch"><div class="fill" style="background:var(--coton); border-bottom:1px solid #ddd"></div><div class="label"><b>Coton</b><span>#F2EDE2</span></div></div>
     <div class="swatch"><div class="fill" style="background:var(--ivoire-cauris)"></div><div class="label"><b>Ivoire cauris</b><span>#E8DEC7</span></div></div>
     <div class="swatch"><div class="fill" style="background:var(--raphia)"></div><div class="label"><b>Raphia</b><span>#B7A582</span></div></div>
-    <div class="swatch"><div class="fill" style="background:var(--or-parure)"></div><div class="label"><b>Or parure</b><span>#D6A857</span></div></div>
-    <div class="swatch"><div class="fill" style="background:var(--jaune-kita)"></div><div class="label"><b>Jaune kita</b><span>#EFB93E</span></div></div>
-    <div class="swatch"><div class="fill" style="background:var(--orange-kita)"></div><div class="label"><b>Orange kita</b><span>#D9721F</span></div></div>
-    <div class="swatch"><div class="fill" style="background:var(--rouge-corail)"></div><div class="label"><b>Rouge corail</b><span>#B0301E</span></div></div>
-    <div class="swatch"><div class="fill" style="background:var(--vert-kita)"></div><div class="label"><b>Vert kita</b><span>#4F8A3E</span></div></div>
-    <div class="swatch"><div class="fill" style="background:var(--bleu-royal)"></div><div class="label"><b>Bleu royal</b><span>#2A45A8</span></div></div>
+    <div class="swatch signature"><div class="fill" style="background:var(--braise)"></div><div class="label"><b>Braise ★</b><span>#B7431E</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--or-parure)"></div><div class="label"><b>Or parure</b><span>#C08B3E</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--jaune-kita)"></div><div class="label"><b>Jaune kita</b><span>#D9A226</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--corail-alerte)"></div><div class="label"><b>Corail (alerte)</b><span>#A83A44</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--vert-profond)"></div><div class="label"><b>Vert profond</b><span>#3F6B3A</span></div></div>
+    <div class="swatch"><div class="fill" style="background:var(--bleu-royal)"></div><div class="label"><b>Bleu royal</b><span>#2D3E8F</span></div></div>
   </div>
 
   <h2><span class="step">03·</span> Motifs tissés générés (SVG/CSS, aucune photo)</h2>
