@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MinWoo — Profil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/patterns.css">
+<link rel="stylesheet" href="../css/components.css">
+<style>
+  .entete-profil {
+    display: flex; align-items: center; gap: var(--espace-3);
+    padding: var(--espace-4) var(--espace-5);
+  }
+  .entete-profil .retour { font-size: 1.3rem; color: var(--texte-att); text-decoration: none; }
+  .entete-profil .titre-page { font-family: var(--police-titres); font-size: var(--taille-lg); font-weight: 600; flex: 1; }
+
+  .scene-profil { max-width: 480px; margin: 0 auto; padding: 0 var(--espace-5) var(--espace-8); }
+
+  /* --- Carte identité --- */
+  .carte-identite {
+    display: flex; align-items: center; gap: var(--espace-4);
+    background: var(--surface); border-radius: var(--rayon-xl); padding: var(--espace-5);
+    margin-bottom: var(--espace-5); box-shadow: var(--ombre-sm);
+  }
+  .avatar {
+    width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+    background: var(--braise); color: white; font-family: var(--police-titres); font-weight: 700; font-size: 1.4rem;
+    display: flex; align-items: center; justify-content: center;
+    border: 3px solid var(--or-parure);
+  }
+  .identite-texte .nom { font-family: var(--police-titres); font-weight: 600; font-size: var(--taille-lg); }
+  .identite-texte .serie { display: flex; align-items: center; gap: 6px; color: var(--braise); font-weight: 700; font-size: var(--taille-sm); margin-top: 4px; }
+
+  /* --- Compteur cauris total --- */
+  .carte-cauris-total {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--indigo-tisse); border-radius: var(--rayon-xl); padding: var(--espace-5);
+    margin-bottom: var(--espace-6); box-shadow: var(--ombre-sm);
+  }
+  .carte-cauris-total .info b { display: block; color: var(--coton); font-family: var(--police-titres); font-size: var(--taille-2xl); }
+  .carte-cauris-total .info span { color: var(--bleu-delave); font-size: var(--taille-sm); }
+  .carte-cauris-total .cauris { width: 64px; height: 40px; }
+
+  h2.titre-section { font-size: var(--taille-base); margin: 0 0 var(--espace-3); }
+
+  /* --- Parures / badges --- */
+  .grille-parures { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--espace-3); margin-bottom: var(--espace-6); }
+  .parure {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    background: var(--surface); border-radius: var(--rayon-lg); padding: var(--espace-3) var(--espace-2);
+    text-align: center;
+  }
+  .medaillon {
+    width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; border: 3px solid var(--or-parure); background: var(--surface-elevee);
+  }
+  .parure.verrouillee .medaillon { border-color: var(--bordure); filter: grayscale(1); opacity: 0.5; }
+  .parure .nom-parure { font-size: var(--taille-xs); color: var(--texte-att); font-weight: 600; line-height: 1.3; }
+  .parure.verrouillee .nom-parure { opacity: 0.6; }
+
+  /* --- Progression par langue --- */
+  .carte-langue { background: var(--surface); border-radius: var(--rayon-lg); padding: var(--espace-4); margin-bottom: var(--espace-3); }
+  .carte-langue .entete-langue-mini { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: var(--taille-sm); }
+  .carte-langue .entete-langue-mini b { font-family: var(--police-titres); }
+  .carte-langue .entete-langue-mini span { color: var(--texte-att); }
+  .barre-progression { height: 10px; background: var(--ivoire-cauris); border-radius: var(--rayon-full); overflow: hidden; }
+  .barre-progression .remplie { height: 100%; background: var(--or-parure); border-radius: var(--rayon-full); }
+</style>
+</head>
+<body>
+<div class="motif-tisse"></div>
+
+<div class="entete-profil">
+  <a class="retour" href="index.html" aria-label="Retour">←</a>
+  <span class="titre-page">Profil</span>
+</div>
+
+<main class="scene-profil">
+
+  <div class="carte-identite">
+    <div class="avatar">A</div>
+    <div class="identite-texte">
+      <div class="nom">Apprenant·e MinWoo</div>
+      <div class="serie">🔥 Série de 3 jours</div>
+    </div>
+  </div>
+
+  <div class="carte-cauris-total">
+    <div class="info">
+      <b>3</b>
+      <span>cauris collectés</span>
+    </div>
+    <svg class="cauris obtenu" viewBox="0 0 100 60">
+      <path class="coquille" d="M8 30 C8 8 28 3 50 3 C72 3 92 8 92 30 C92 52 72 57 50 57 C28 57 8 52 8 30 Z"/>
+      <line class="fente" x1="26" y1="30" x2="74" y2="30" stroke-width="3"/>
+      <line class="dent" x1="33" y1="24" x2="33" y2="36" stroke-width="2.5"/>
+      <line class="dent" x1="43" y1="21" x2="43" y2="39" stroke-width="2.5"/>
+      <line class="dent" x1="57" y1="21" x2="57" y2="39" stroke-width="2.5"/>
+      <line class="dent" x1="67" y1="24" x2="67" y2="36" stroke-width="2.5"/>
+    </svg>
+  </div>
+
+  <h2 class="titre-section">Parures gagnées</h2>
+  <div class="grille-parures">
+    <div class="parure">
+      <div class="medaillon">🌱</div>
+      <div class="nom-parure">Premiers pas</div>
+    </div>
+    <div class="parure">
+      <div class="medaillon">🔥</div>
+      <div class="nom-parure">3 jours de suite</div>
+    </div>
+    <div class="parure verrouillee">
+      <div class="medaillon">💛</div>
+      <div class="nom-parure">10 cauris</div>
+    </div>
+    <div class="parure verrouillee">
+      <div class="medaillon">📖</div>
+      <div class="nom-parure">Yacouba maîtrisé</div>
+    </div>
+    <div class="parure verrouillee">
+      <div class="medaillon">🗣️</div>
+      <div class="nom-parure">Toura débuté</div>
+    </div>
+    <div class="parure verrouillee">
+      <div class="medaillon">👑</div>
+      <div class="nom-parure">30 jours de suite</div>
+    </div>
+  </div>
+
+  <h2 class="titre-section">Progression par langue</h2>
+  <div class="carte-langue">
+    <div class="entete-langue-mini">
+      <b>Yacouba</b>
+      <span>2 / 6 leçons</span>
+    </div>
+    <div class="barre-progression"><div class="remplie" style="width:33%"></div></div>
+  </div>
+  <div class="carte-langue">
+    <div class="entete-langue-mini">
+      <b>Toura</b>
+      <span>0 / 6 leçons</span>
+    </div>
+    <div class="barre-progression"><div class="remplie" style="width:0%"></div></div>
+  </div>
+
+</main>
+
+</body>
+</html>
