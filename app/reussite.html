@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MinWoo — Leçon terminée</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/patterns.css">
+<link rel="stylesheet" href="../css/components.css">
+<style>
+  body { background: var(--encre); min-height: 100vh; overflow-x: hidden; }
+
+  .scene-reussite {
+    max-width: 480px; margin: 0 auto; min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center;
+    padding: var(--espace-6) var(--espace-5) var(--espace-8);
+  }
+
+  /* --- Le pagne qui se déroule : bande kita tissée, transform uniquement --- */
+  .pagne-deroule {
+    width: 100%; height: 72px; border-radius: var(--rayon-md);
+    transform: scaleX(0); transform-origin: left center;
+    background: repeating-linear-gradient(100deg,
+      var(--braise) 0 34px, var(--jaune-kita) 34px 68px,
+      var(--encre) 68px 76px, var(--vert-profond) 76px 110px,
+      var(--or-parure) 110px 144px, var(--bleu-royal) 144px 178px,
+      var(--encre) 178px 186px);
+    animation: derouler 700ms var(--easing) 100ms forwards;
+    margin-bottom: var(--espace-6);
+    box-shadow: var(--ombre-md);
+  }
+  @keyframes derouler { to { transform: scaleX(1); } }
+
+  /* --- Cauris qui rejoint la collection --- */
+  .zone-cauris { position: relative; width: 120px; height: 76px; margin-bottom: var(--espace-4); }
+  .cauris-geant {
+    width: 120px; height: 76px;
+    opacity: 0; transform: scale(0.3) rotate(-18deg);
+    animation: rebond 650ms cubic-bezier(.34,1.56,.64,1) 750ms forwards;
+  }
+  @keyframes rebond { 60% { opacity: 1; transform: scale(1.12) rotate(6deg); } 100% { opacity: 1; transform: scale(1) rotate(0deg); } }
+  .badge-plus-un {
+    position: absolute; top: -6px; right: -14px;
+    background: var(--or-parure); color: var(--encre); font-weight: 800; font-size: var(--taille-sm);
+    width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: scale(0.4);
+    animation: pop-plus-un 400ms var(--easing) 1250ms forwards;
+    box-shadow: var(--ombre-sm);
+  }
+  @keyframes pop-plus-un { to { opacity: 1; transform: scale(1); } }
+
+  .titre-reussite {
+    text-align: center; color: var(--coton);
+    opacity: 0; transform: translateY(10px);
+    animation: apparition 450ms var(--easing) 950ms forwards;
+  }
+  .titre-reussite h1 { font-size: var(--taille-2xl); margin: 0 0 4px; }
+  .titre-reussite p { color: var(--bleu-delave); margin: 0; }
+  @keyframes apparition { to { opacity: 1; transform: translateY(0); } }
+
+  .carte-stats {
+    width: 100%; background: var(--ivoire-cauris); border-radius: var(--rayon-xl);
+    padding: var(--espace-5); margin-top: var(--espace-6);
+    opacity: 0; transform: translateY(14px);
+    animation: apparition 450ms var(--easing) 1250ms forwards;
+    box-shadow: var(--ombre-md);
+  }
+  .carte-stats .ligne-collier { display: flex; justify-content: center; margin-bottom: var(--espace-4); }
+  .carte-stats .collier .perle { position: relative; background: var(--surface-elevee); border: 2px solid var(--bordure); }
+  .carte-stats .collier .perle .remplissage {
+    position: absolute; inset: -2px; border-radius: 50%; background: var(--recompense);
+    opacity: 0; transform: scale(0.5);
+  }
+  .carte-stats .collier .perle.allume .remplissage {
+    animation: allumer-perle 350ms var(--easing) forwards;
+  }
+  @keyframes allumer-perle { to { opacity: 1; transform: scale(1); } }
+
+  .ligne-score { display: flex; justify-content: space-between; align-items: center; padding-top: var(--espace-3); border-top: 1px solid var(--bordure); }
+  .ligne-score .label { color: var(--texte-att); font-size: var(--taille-sm); }
+  .ligne-score .valeur { font-family: var(--police-titres); font-weight: 700; font-size: var(--taille-lg); color: var(--texte); }
+
+  .bouton-continuer {
+    width: 100%; margin-top: var(--espace-6); padding: 16px;
+    opacity: 0; animation: apparition 400ms var(--easing) 1400ms forwards;
+  }
+
+  .rejouer {
+    margin-top: var(--espace-5); background: transparent; border: none;
+    color: var(--bleu-delave); font-size: var(--taille-xs); cursor: pointer; text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<main class="scene-reussite">
+  <div class="pagne-deroule" id="pagne"></div>
+
+  <div class="zone-cauris">
+    <svg class="cauris obtenu cauris-geant" id="caurisGeant" viewBox="0 0 100 60">
+      <path class="coquille" d="M8 30 C8 8 28 3 50 3 C72 3 92 8 92 30 C92 52 72 57 50 57 C28 57 8 52 8 30 Z"/>
+      <line class="fente" x1="26" y1="30" x2="74" y2="30" stroke-width="3"/>
+      <line class="dent" x1="33" y1="24" x2="33" y2="36" stroke-width="2.5"/>
+      <line class="dent" x1="43" y1="21" x2="43" y2="39" stroke-width="2.5"/>
+      <line class="dent" x1="57" y1="21" x2="57" y2="39" stroke-width="2.5"/>
+      <line class="dent" x1="67" y1="24" x2="67" y2="36" stroke-width="2.5"/>
+    </svg>
+    <span class="badge-plus-un" id="badgePlusUn">+1</span>
+  </div>
+
+  <div class="titre-reussite">
+    <h1 class="titre">Leçon terminée !</h1>
+    <p>Famille — un cauri de plus dans ta collection</p>
+  </div>
+
+  <div class="carte-stats">
+    <div class="ligne-collier">
+      <div class="collier" id="collierFinal">
+        <div class="perle allume" style="background:var(--surface-elevee)"><span class="remplissage"></span></div>
+        <div class="perle allume" style="background:var(--surface-elevee)"><span class="remplissage"></span></div>
+        <div class="perle allume" style="background:var(--surface-elevee)"><span class="remplissage"></span></div>
+        <div class="perle allume" style="background:var(--surface-elevee)"><span class="remplissage"></span></div>
+        <div class="perle allume" style="background:var(--surface-elevee)"><span class="remplissage"></span></div>
+      </div>
+    </div>
+    <div class="ligne-score">
+      <span class="label">Cauris gagnés</span>
+      <span class="valeur">+1</span>
+    </div>
+    <div class="ligne-score">
+      <span class="label">Cauris au total</span>
+      <span class="valeur">3</span>
+    </div>
+  </div>
+
+  <a class="btn btn-primaire bouton-continuer" href="parcours.html">Continuer</a>
+
+  <button class="rejouer" id="btnRejouer">🔁 Rejouer l'animation</button>
+</main>
+
+<script>
+  document.getElementById('btnRejouer').addEventListener('click', () => {
+    const els = document.querySelectorAll('.pagne-deroule, .cauris-geant, .badge-plus-un, .titre-reussite, .carte-stats, .bouton-continuer');
+    els.forEach(el => {
+      el.style.animation = 'none';
+      void el.offsetWidth;
+      el.style.animation = '';
+    });
+  });
+</script>
+</body>
+</html>
