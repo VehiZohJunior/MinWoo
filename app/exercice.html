@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MinWoo — Exercice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/patterns.css">
+<link rel="stylesheet" href="../css/components.css">
+<style>
+  .entete-exo {
+    display: flex; align-items: center; gap: var(--espace-4);
+    padding: var(--espace-4) var(--espace-5);
+  }
+  .fermer { font-size: 1.4rem; color: var(--texte-att); text-decoration: none; }
+  .entete-exo .collier { flex: 1; justify-content: center; }
+
+  .scene-exo { max-width: 480px; margin: 0 auto; padding: var(--espace-6) var(--espace-5) var(--espace-8); }
+  .consigne { text-align: center; color: var(--texte-att); font-size: var(--taille-sm); margin-bottom: var(--espace-5); }
+
+  .carte-audio {
+    display: flex; flex-direction: column; align-items: center; gap: var(--espace-3);
+    background: var(--surface); border-radius: var(--rayon-xl); padding: var(--espace-6);
+    margin-bottom: var(--espace-6); box-shadow: var(--ombre-sm);
+  }
+  .bouton-audio {
+    width: 76px; height: 76px; border-radius: 50%; border: none; cursor: pointer;
+    background: var(--primaire); color: white; font-size: 1.8rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform var(--duree-rapide) var(--easing);
+  }
+  .bouton-audio:active { transform: scale(0.92); }
+  .bouton-audio.joue { animation: pulse-audio 0.6s var(--easing); }
+  @keyframes pulse-audio { 0%,100% { box-shadow: 0 0 0 0 rgba(183,67,30,0.35); } 50% { box-shadow: 0 0 0 14px rgba(183,67,30,0); } }
+
+  .mot-cible {
+    font-family: var(--police-texte); font-style: italic; color: var(--texte-att);
+    font-size: var(--taille-sm); border: 1.5px dashed var(--bordure); border-radius: var(--rayon-md);
+    padding: 6px 14px; display: none;
+  }
+  .mot-cible.visible { display: inline-block; }
+
+  .grille-choix { display: grid; grid-template-columns: 1fr 1fr; gap: var(--espace-3); margin-bottom: var(--espace-5); }
+  .choix {
+    background: var(--surface); border: 2.5px solid var(--bordure); border-radius: var(--rayon-lg);
+    padding: var(--espace-5) var(--espace-3); text-align: center; cursor: pointer;
+    transition: border-color var(--duree-rapide) var(--easing), transform var(--duree-rapide) var(--easing), background var(--duree-rapide) var(--easing);
+  }
+  .choix .emoji { font-size: 2.4rem; display: block; margin-bottom: 8px; }
+  .choix .legende { font-size: var(--taille-sm); color: var(--texte-att); }
+  .choix:hover { border-color: var(--bleu-delave); }
+  .choix.selectionne { border-color: var(--primaire); background: var(--surface-elevee); transform: scale(1.02); }
+  .choix.correct { border-color: var(--or-parure); background: rgba(192,139,62,0.14); }
+  .choix.incorrect { border-color: var(--corail-alerte); background: rgba(168,58,68,0.1); animation: secoue 0.4s; }
+  @keyframes secoue { 20%,60% { transform: translateX(-6px); } 40%,80% { transform: translateX(6px); } }
+
+  .banniere-feedback {
+    display: none; align-items: center; gap: var(--espace-3);
+    border-radius: var(--rayon-lg); padding: var(--espace-4) var(--espace-5); margin-bottom: var(--espace-4);
+  }
+  .banniere-feedback.visible { display: flex; }
+  .banniere-feedback.ok { background: rgba(192,139,62,0.16); color: var(--or-parure); }
+  .banniere-feedback.ko { background: rgba(168,58,68,0.12); color: var(--corail-alerte); }
+  .banniere-feedback .cauris { width: 34px; height: 21px; }
+  .banniere-feedback .texte b { display: block; font-family: var(--police-titres); font-size: var(--taille-base); color: var(--texte); }
+  .banniere-feedback .texte span { font-size: var(--taille-xs); }
+
+  .bouton-valider {
+    width: 100%; padding: 16px; font-size: var(--taille-base);
+  }
+  .bouton-valider:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .note-placeholder {
+    margin-top: var(--espace-6); padding: var(--espace-3) var(--espace-4);
+    background: var(--surface); border-radius: var(--rayon-md); border: 1px dashed var(--bordure);
+    font-size: var(--taille-xs); color: var(--texte-att); text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="motif-tisse"></div>
+
+<div class="entete-exo">
+  <a class="fermer" href="parcours.html" aria-label="Quitter l'exercice">✕</a>
+  <div class="collier">
+    <div class="perle faite"></div><div class="perle faite"></div>
+    <div class="perle a-faire" id="perle3"></div><div class="perle a-faire"></div><div class="perle a-faire"></div>
+  </div>
+  <svg class="cauris" id="cauris-compteur" viewBox="0 0 100 60">
+    <path class="coquille" d="M8 30 C8 8 28 3 50 3 C72 3 92 8 92 30 C92 52 72 57 50 57 C28 57 8 52 8 30 Z"/>
+    <line class="fente" x1="26" y1="30" x2="74" y2="30" stroke-width="3"/>
+  </svg>
+</div>
+
+<main class="scene-exo">
+  <p class="consigne">Famille — écoute et associe à la bonne image</p>
+
+  <div class="carte-audio">
+    <button class="bouton-audio" id="btnAudio" aria-label="Écouter le mot">🔊</button>
+    <span class="mot-cible" id="motCible">[ mot à intégrer — en attente de validation locuteur ]</span>
+  </div>
+
+  <div class="grille-choix" id="grilleChoix">
+    <div class="choix" data-correct="false">
+      <span class="emoji">👨</span>
+      <span class="legende">Père</span>
+    </div>
+    <div class="choix" data-correct="true">
+      <span class="emoji">👩</span>
+      <span class="legende">Mère</span>
+    </div>
+    <div class="choix" data-correct="false">
+      <span class="emoji">👧</span>
+      <span class="legende">Fille</span>
+    </div>
+    <div class="choix" data-correct="false">
+      <span class="emoji">👦</span>
+      <span class="legende">Garçon</span>
+    </div>
+  </div>
+
+  <div class="banniere-feedback ok" id="banniereOk">
+    <svg class="cauris obtenu" viewBox="0 0 100 60">
+      <path class="coquille" d="M8 30 C8 8 28 3 50 3 C72 3 92 8 92 30 C92 52 72 57 50 57 C28 57 8 52 8 30 Z"/>
+      <line class="fente" x1="26" y1="30" x2="74" y2="30" stroke-width="3"/>
+    </svg>
+    <div class="texte"><b>Bien joué !</b><span>Ton cauris brille un peu plus</span></div>
+  </div>
+  <div class="banniere-feedback ko" id="banniereKo">
+    <div class="texte"><b>Pas tout à fait</b><span>Réessaie — tu y es presque</span></div>
+  </div>
+
+  <button class="btn btn-primaire bouton-valider" id="btnValider" disabled>Valider</button>
+
+  <p class="note-placeholder">🔧 Écran de démonstration — le mot et l'audio réels seront intégrés dès qu'un locuteur natif aura validé le vocabulaire "Famille".</p>
+</main>
+
+<script>
+  const choix = document.querySelectorAll('.choix');
+  const btnValider = document.getElementById('btnValider');
+  const btnAudio = document.getElementById('btnAudio');
+  const banniereOk = document.getElementById('banniereOk');
+  const banniereKo = document.getElementById('banniereKo');
+  const motCible = document.getElementById('motCible');
+  const cauris = document.getElementById('cauris-compteur');
+  let selection = null;
+  let valide = false;
+
+  btnAudio.addEventListener('click', () => {
+    btnAudio.classList.remove('joue');
+    void btnAudio.offsetWidth;
+    btnAudio.classList.add('joue');
+  });
+
+  choix.forEach(c => {
+    c.addEventListener('click', () => {
+      if (valide) return;
+      choix.forEach(x => x.classList.remove('selectionne'));
+      c.classList.add('selectionne');
+      selection = c;
+      btnValider.disabled = false;
+    });
+  });
+
+  btnValider.addEventListener('click', () => {
+    if (!selection) return;
+    valide = true;
+    const estCorrect = selection.dataset.correct === 'true';
+    motCible.classList.add('visible');
+    if (estCorrect) {
+      selection.classList.add('correct');
+      banniereOk.classList.add('visible');
+      cauris.classList.add('obtenu');
+    } else {
+      selection.classList.add('incorrect');
+      banniereKo.classList.add('visible');
+      choix.forEach(x => { if (x.dataset.correct === 'true') x.classList.add('correct'); });
+    }
+    btnValider.textContent = 'Continuer';
+    btnValider.onclick = () => window.location.href = 'parcours.html';
+  });
+</script>
+</body>
+</html>
