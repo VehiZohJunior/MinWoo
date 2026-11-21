@@ -46,6 +46,18 @@
   .statut-langue.actif { color: var(--braise); }
   .statut-langue.venir { color: var(--texte-att); }
 
+  .lien-programme {
+    display: flex; align-items: center; gap: var(--espace-4); margin-top: var(--espace-6);
+    padding: var(--espace-4) var(--espace-5); border-radius: var(--rayon-lg);
+    border: 2px solid var(--bordure); text-decoration: none; color: var(--texte);
+  }
+  .lien-programme:hover { border-color: var(--primaire); }
+  .motif-programme {
+    width: 36px; height: 36px; border-radius: var(--rayon-sm); flex-shrink: 0;
+    background: repeating-linear-gradient(90deg, var(--encre) 0 6px, var(--coton) 6px 8px, var(--or-parure) 8px 10px, var(--coton) 10px 12px, var(--braise) 12px 15px, var(--coton) 15px 17px);
+  }
+  .texte-programme { flex: 1; display: flex; flex-direction: column; }
+  .texte-programme span { font-size: var(--taille-sm); color: var(--texte-att); }
   .pied-page { text-align: center; margin-top: var(--espace-7); }
   .pied-page a { color: var(--texte-att); font-size: var(--taille-sm); }
 </style>
@@ -100,6 +112,12 @@
       </div>
     </div>
   </div>
+
+  <a class="lien-programme" href="programme.html">
+    <span class="motif-programme"></span>
+    <span class="texte-programme"><b>Voir le programme complet</b><span>6 bandes, 54 unités, du premier son à la transmission</span></span>
+    <span aria-hidden="true">→</span>
+  </a>
 
   <div class="pied-page">
     <a href="../index.html">← Retour au site MinWoo</a>

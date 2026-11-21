@@ -58,8 +58,17 @@ Photos en fond, mélange de toutes les couleurs kita en même temps hors céléb
 
 ## Écrans construits
 
-1. **Accueil / choix de langue** (`app/index.html`) — tuiles tissées par langue, validé le 2026-09-25.
-2. Parcours d'apprentissage — à construire.
-3. Exercice — à construire.
-4. Écran de réussite (moment signature kita) — à construire.
-5. Profil (cauris, parures, série) — à construire.
+1. **Accueil / choix de langue** (`app/index.html`) — tuiles tissées par langue, lien vers le programme.
+2. **Parcours d'apprentissage** (`app/parcours.html`).
+3. **Exercice** (`app/exercice.html`) — mot cible encore en placeholder, en attente du comité.
+4. **Écran de réussite** (`app/reussite.html`) — moment signature kita, 1,8 s.
+5. **Profil** (`app/profil.html`).
+6. **Programme** (`app/programme.html`) — carte des 6 bandes et 54 unités, lue depuis `content/curriculum/programme.json`.
+
+## Structure pédagogique et linguistique
+
+Référence complète : `docs/STRUCTURE-PEDAGOGIQUE.md`. À lire avant de créer une unité, un exercice ou une donnée de langue.
+
+- **Programme** : 6 bandes alignées sur le CECR (Pré-A1 à C1), 54 unités, 8 pistes (Sons et tons, Écriture, Mots, Grammaire, Sens, Usage, Parole et récit, Culture et milieu), unité en 7 étapes équilibrant les 4 volets de Nation. Source unique : `content/curriculum/programme.json`.
+- **Données de langue** : format défini dans `content/schema/modele-de-donnees.schema.json`. Jamais de mot, phrase ou proverbe inventé : tout vient du comité, avec source, consentement du locuteur et validation par un second membre.
+- **Faits linguistiques** cités dans l'interface : uniquement s'ils sont sourcés (Vydrin 2021 pour le dan ; Bearth, Idiatov pour le toura).

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MinWoo — Le programme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/patterns.css">
+<link rel="stylesheet" href="../css/components.css">
+<style>
+  .entete-prog { display: flex; align-items: center; gap: var(--espace-3); padding: var(--espace-4) var(--espace-5); }
+  .entete-prog .retour { font-size: 1.3rem; color: var(--texte-att); text-decoration: none; }
+  .entete-prog .titre-page { font-family: var(--police-titres); font-size: var(--taille-lg); font-weight: 600; flex: 1; }
+
+  .scene { max-width: 620px; margin: 0 auto; padding: 0 var(--espace-5) var(--espace-8); }
+  .intro h1 { font-size: var(--taille-2xl); margin: var(--espace-3) 0 var(--espace-2); }
+  .intro p { color: var(--texte-att); margin: 0 0 var(--espace-5); }
+
+  .choix-langue { display: flex; gap: var(--espace-2); margin-bottom: var(--espace-4); }
+  .choix-langue button {
+    flex: 1; padding: 10px; border-radius: var(--rayon-full); cursor: pointer;
+    border: 2px solid var(--bordure); background: transparent; color: var(--texte);
+    font-family: var(--police-texte); font-weight: 700; font-size: var(--taille-sm);
+  }
+  .choix-langue button[aria-pressed="true"] { border-color: var(--primaire); color: var(--primaire); background: var(--surface-elevee); }
+
+  .fiche-langue { background: var(--surface); border-radius: var(--rayon-lg); padding: var(--espace-4) var(--espace-5); margin-bottom: var(--espace-6); font-size: var(--taille-sm); }
+  .fiche-langue dl { margin: 0; display: grid; grid-template-columns: 7.5em 1fr; gap: 6px var(--espace-3); }
+  .fiche-langue dt { color: var(--texte-att); font-weight: 600; }
+  .fiche-langue dd { margin: 0; }
+  .fiche-langue .source { margin-top: var(--espace-3); font-size: var(--taille-xs); color: var(--texte-att); font-style: italic; }
+
+  h2.section { font-size: var(--taille-lg); margin: var(--espace-6) 0 var(--espace-3); }
+
+  /* --- Bandes du pagne --- */
+  .bande { border-radius: var(--rayon-lg); overflow: hidden; margin-bottom: var(--espace-3); background: var(--surface); box-shadow: var(--ombre-sm); }
+  .bande summary { list-style: none; cursor: pointer; display: block; }
+  .bande summary::-webkit-details-marker { display: none; }
+  .tissage { height: 22px; }
+  .tete-bande { display: flex; align-items: baseline; gap: var(--espace-3); padding: var(--espace-4) var(--espace-5); }
+  .tete-bande .num { font-family: var(--police-titres); font-weight: 700; color: var(--texte-att); min-width: 1.6em; }
+  .tete-bande .nom { font-family: var(--police-titres); font-weight: 600; font-size: var(--taille-lg); flex: 1; }
+  .tete-bande .cecr { font-size: var(--taille-xs); font-weight: 700; border: 1px solid var(--bordure); border-radius: var(--rayon-full); padding: 2px 10px; }
+  .tete-bande .chevron { color: var(--texte-att); transition: transform var(--duree-rapide) var(--easing); }
+  .bande[open] .chevron { transform: rotate(90deg); }
+  .intention { padding: 0 var(--espace-5) var(--espace-4); margin: 0; color: var(--texte-att); font-size: var(--taille-sm); }
+
+  .corps-bande { padding: 0 var(--espace-5) var(--espace-5); }
+  .je-peux { background: var(--surface-elevee); border-radius: var(--rayon-md); padding: var(--espace-3) var(--espace-4); margin-bottom: var(--espace-4); }
+  .je-peux b { display: block; font-size: var(--taille-xs); text-transform: uppercase; letter-spacing: 0.05em; color: var(--texte-att); margin-bottom: 4px; }
+  .je-peux ul { margin: 0; padding-left: 1.1em; font-size: var(--taille-sm); }
+
+  .unite { padding: var(--espace-3) 0; border-top: 1px solid var(--bordure); }
+  .unite .ligne1 { display: flex; gap: var(--espace-2); align-items: baseline; }
+  .unite .n { font-size: var(--taille-xs); color: var(--texte-att); min-width: 2.2em; }
+  .unite .t { font-weight: 700; }
+  .unite .obj { font-size: var(--taille-sm); color: var(--texte-att); margin: 2px 0 6px 2.6em; }
+  .unite .tache { font-size: var(--taille-xs); margin: 0 0 6px 2.6em; }
+  .unite .tache::before { content: "Tâche : "; font-weight: 700; }
+  .pastilles { display: flex; flex-wrap: wrap; gap: 4px; margin-left: 2.6em; }
+  .pastille-piste { font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: var(--rayon-full); border: 1px solid var(--bordure); color: var(--texte); }
+
+  .t-b0 { background: repeating-linear-gradient(90deg, var(--raphia) 0 10px, var(--coton) 10px 14px, var(--ivoire-cauris) 14px 30px, var(--coton) 30px 34px); }
+  .t-b1 { background: repeating-linear-gradient(90deg, var(--indigo-tisse) 0 18px, var(--coton) 18px 22px, var(--bleu-delave) 22px 28px, var(--coton) 28px 32px); }
+  .t-b2 { background: repeating-linear-gradient(90deg, var(--encre) 0 16px, var(--coton) 16px 20px, var(--or-parure) 20px 24px, var(--coton) 24px 28px, var(--indigo-tisse) 28px 40px, var(--coton) 40px 44px); }
+  .t-b3 { background: repeating-linear-gradient(90deg, var(--indigo-tisse) 0 20px, var(--coton) 20px 23px, var(--encre) 23px 33px, var(--braise) 33px 36px, var(--coton) 36px 39px); }
+  .t-b4 { background: repeating-linear-gradient(90deg, var(--encre) 0 12px, var(--or-parure) 12px 18px, var(--encre) 18px 30px, var(--coton) 30px 33px, var(--or-parure) 33px 36px, var(--coton) 36px 39px); }
+  .t-b5 { background: repeating-linear-gradient(90deg, var(--braise) 0 14px, var(--encre) 14px 18px, var(--or-parure) 18px 22px, var(--encre) 22px 26px, var(--braise) 26px 40px, var(--coton) 40px 43px); }
+
+  /* --- Pistes --- */
+  .grille-pistes { display: grid; grid-template-columns: 1fr 1fr; gap: var(--espace-3); }
+  .carte-piste { background: var(--surface); border-radius: var(--rayon-md); padding: var(--espace-3) var(--espace-4); }
+  .carte-piste .code { font-family: var(--police-titres); font-weight: 700; color: var(--primaire); }
+  .carte-piste .nom { font-weight: 700; }
+  .carte-piste .disc { font-size: var(--taille-xs); color: var(--texte-att); }
+  @media (max-width: 420px) { .grille-pistes { grid-template-columns: 1fr; } }
+
+  /* --- Cycle de l'unité --- */
+  .cycle { counter-reset: etape; list-style: none; padding: 0; margin: 0; }
+  .cycle li { display: flex; gap: var(--espace-3); padding: var(--espace-3) 0; border-top: 1px solid var(--bordure); }
+  .cycle .rond { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: var(--taille-xs); background: var(--surface); border: 2px solid var(--or-parure); }
+  .cycle .nom { font-weight: 700; }
+  .cycle .volet { font-size: var(--taille-xs); color: var(--texte-att); }
+  .cycle .desc { font-size: var(--taille-sm); }
+
+  .note-comite { margin-top: var(--espace-6); padding: var(--espace-4); border: 1px dashed var(--bordure); border-radius: var(--rayon-md); font-size: var(--taille-xs); color: var(--texte-att); }
+  .erreur { color: var(--erreur); }
+</style>
+</head>
+<body>
+<div class="motif-tisse"></div>
+
+<div class="entete-prog">
+  <a class="retour" href="index.html" aria-label="Retour">←</a>
+  <span class="titre-page">Le programme</span>
+</div>
+
+<main class="scene">
+  <div class="intro">
+    <h1 class="titre">Le pagne de la langue</h1>
+    <p id="metaphore">Chargement du programme…</p>
+  </div>
+
+  <div class="choix-langue" role="group" aria-label="Langue">
+    <button type="button" data-langue="dan" aria-pressed="true">Dan (yacouba)</button>
+    <button type="button" data-langue="toura" aria-pressed="false">Toura</button>
+  </div>
+  <div class="fiche-langue" id="ficheLangue"></div>
+
+  <h2 class="section titre">Six bandes, du premier son à la transmission</h2>
+  <div id="bandes"></div>
+
+  <h2 class="section titre">Huit pistes tissées dans chaque bande</h2>
+  <div class="grille-pistes" id="pistes"></div>
+
+  <h2 class="section titre">Le déroulé d'une unité</h2>
+  <ol class="cycle" id="cycle"></ol>
+
+  <p class="note-comite">Architecture proposée au comité scientifique. Les mots, phrases et enregistrements de chaque unité ne seront publiés qu'après validation par deux membres du comité.</p>
+</main>
+
+<script>
+  const SOURCE = '../content/curriculum/programme.json';
+
+  function el(tag, cls, texte) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (texte !== undefined) e.textContent = texte;
+    return e;
+  }
+
+  function rendreFiche(spec) {
+    const fiche = document.getElementById('ficheLangue');
+    fiche.replaceChildren();
+    const dl = el('dl');
+    const lignes = [
+      ['Locuteurs', spec.locuteurs], ['Région', spec.region],
+      ['Normes', spec.normes], ['Dialectes', spec.dialectes],
+      ['Voyelles', spec.voyelles], ['Consonnes', spec.consonnes],
+      ['Tons', spec.tons], ['Écriture', spec.ecriture], ['Grammaire', spec.grammaire]
+    ];
+    lignes.forEach(([k, v]) => { if (v) { dl.append(el('dt', '', k), el('dd', '', v)); } });
+    fiche.append(dl, el('p', 'source', 'Sources : ' + spec.source));
+  }
+
+  function rendre(prog) {
+    document.getElementById('metaphore').textContent = prog.metaphore;
+    const nomsPistes = Object.fromEntries(prog.pistes.map(p => [p.id, p.nom]));
+
+    const conteneur = document.getElementById('bandes');
+    prog.bandes.forEach((b, i) => {
+      const d = el('details', 'bande');
+      if (i === 0) d.open = true;
+      const s = el('summary');
+      s.append(el('div', 'tissage t-' + b.id));
+      const tete = el('div', 'tete-bande');
+      tete.append(el('span', 'num', String(b.numero)), el('span', 'nom', b.nom), el('span', 'cecr', b.cecr), el('span', 'chevron', '›'));
+      s.append(tete, el('p', 'intention', b.intention));
+      d.append(s);
+
+      const corps = el('div', 'corps-bande');
+      const jp = el('div', 'je-peux');
+      jp.append(el('b', '', 'À la fin de la bande'));
+      const ul = el('ul');
+      b.jePeux.forEach(t => ul.append(el('li', '', t)));
+      jp.append(ul);
+      corps.append(jp);
+
+      b.unites.forEach((u, j) => {
+        const bloc = el('div', 'unite');
+        const l1 = el('div', 'ligne1');
+        l1.append(el('span', 'n', b.numero + '.' + (j + 1)), el('span', 't', u.titre));
+        bloc.append(l1, el('p', 'obj', u.objectif), el('p', 'tache', u.tache));
+        const past = el('div', 'pastilles');
+        u.pistes.forEach(p => past.append(el('span', 'pastille-piste', nomsPistes[p] || p)));
+        bloc.append(past);
+        corps.append(bloc);
+      });
+      d.append(corps);
+      conteneur.append(d);
+    });
+
+    const pistes = document.getElementById('pistes');
+    prog.pistes.forEach(p => {
+      const c = el('div', 'carte-piste');
+      const l = el('div');
+      l.append(el('span', 'code', p.code + ' '), el('span', 'nom', p.nom));
+      c.append(l, el('div', 'disc', p.disciplines.join(' · ')));
+      c.title = p.description;
+      pistes.append(c);
+    });
+
+    const cycle = document.getElementById('cycle');
+    prog.cycleUnite.forEach(e => {
+      const li = el('li');
+      const txt = el('div');
+      txt.append(el('div', 'nom', e.nom), el('div', 'volet', e.volet), el('div', 'desc', e.description));
+      li.append(el('span', 'rond', String(e.etape)), txt);
+      cycle.append(li);
+    });
+
+    const boutons = document.querySelectorAll('.choix-langue button');
+    boutons.forEach(btn => btn.addEventListener('click', () => {
+      boutons.forEach(x => x.setAttribute('aria-pressed', String(x === btn)));
+      rendreFiche(prog.specificites[btn.dataset.langue]);
+    }));
+    rendreFiche(prog.specificites.dan);
+  }
+
+  fetch(SOURCE)
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(rendre)
+    .catch(() => {
+      const p = document.getElementById('metaphore');
+      p.textContent = 'Le programme n\'a pas pu être chargé. Vérifiez votre connexion puis rechargez la page.';
+      p.className = 'erreur';
+    });
+</script>
+</body>
+</html>

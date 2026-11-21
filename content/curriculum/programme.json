@@ -1,0 +1,213 @@
+{
+  "version": "1.0",
+  "date": "2026-11-21",
+  "statut": "Proposition soumise au comité scientifique — aucune donnée de langue ici, uniquement l'architecture.",
+  "metaphore": "Comme un pagne tissé est fait de bandes étroites cousues ensemble, la maîtrise de la langue se construit bande après bande. Six bandes, de la toute première écoute à la transmission.",
+
+  "pistes": [
+    { "id": "sons", "code": "So", "nom": "Sons et tons", "disciplines": ["phonétique", "phonologie", "prosodie"],
+      "description": "Percevoir puis produire les voyelles orales et nasales, les consonnes propres à la langue et surtout les tons, qui distinguent les mots et portent une partie de la grammaire." },
+    { "id": "ecriture", "code": "Éc", "nom": "Écriture", "disciplines": ["orthographe", "lecture"],
+      "description": "Lire et écrire selon l'orthographe en usage en Côte d'Ivoire, notation des tons et de la nasalité, découpage des mots." },
+    { "id": "lexique", "code": "Mo", "nom": "Mots", "disciplines": ["lexicologie", "morphologie lexicale"],
+      "description": "Vocabulaire par champs et par fréquence, formation des mots (dérivation, composition, redoublement), emprunts." },
+    { "id": "grammaire", "code": "Gr", "nom": "Grammaire", "disciplines": ["morphosyntaxe", "syntaxe", "construction des énoncés"],
+      "description": "Ordre des constituants, marques prédicatives, pronoms, possession, postpositions, énoncés non verbaux, focalisation, phrase complexe." },
+    { "id": "sens", "code": "Se", "nom": "Sens", "disciplines": ["sémantique", "lexicographie"],
+      "description": "Polysémie, champs sémantiques, sens figuré, idéophones, ce que le ton fait au sens." },
+    { "id": "usage", "code": "Us", "nom": "Usage", "disciplines": ["pragmatique", "sociolinguistique"],
+      "description": "Parler juste selon la personne, l'âge, le lieu et le moment : salutations, politesse, demandes, refus, variation dialectale, registres, contact avec le français et le dioula." },
+    { "id": "discours", "code": "Pa", "nom": "Parole et récit", "disciplines": ["analyse du discours", "oralité", "ethnopoétique"],
+      "description": "Dialogue, récit, conte, proverbe, devinette, chant : comment une parole s'organise et se transmet." },
+    { "id": "milieu", "code": "Mi", "nom": "Culture et milieu", "disciplines": ["anthropolinguistique", "écolinguistique"],
+      "description": "La langue comme mémoire d'un milieu : parenté, noms, calendrier agricole, plantes, animaux, lieux, savoir-faire. Tout contenu culturel est validé par le comité." }
+  ],
+
+  "cycleUnite": [
+    { "etape": 1, "nom": "Écouter", "volet": "input centré sur le sens", "description": "Une situation entendue avant d'être expliquée, avec des voix différentes (hommes, femmes, âges, variétés)." },
+    { "etape": 2, "nom": "Remarquer", "volet": "apprentissage centré sur la langue", "description": "On isole un son, un ton, une structure ou un mot, on le compare, on en tire la règle." },
+    { "etape": 3, "nom": "S'exercer", "volet": "apprentissage centré sur la langue", "description": "Exercices guidés et corrigés immédiatement." },
+    { "etape": 4, "nom": "Dire", "volet": "production centrée sur le sens", "description": "L'apprenant s'enregistre et se compare à la voix de référence." },
+    { "etape": 5, "nom": "Agir", "volet": "production centrée sur le sens", "description": "Une petite tâche de communication réelle : saluer un aîné, demander un prix, raconter." },
+    { "etape": 6, "nom": "Fluidité", "volet": "développement de la fluidité", "description": "Rappel rapide de ce qui est déjà su, sans aucun élément nouveau." },
+    { "etape": 7, "nom": "Bilan", "volet": "consolidation", "description": "Le cauris se remplit, les éléments appris entrent dans la révision espacée." }
+  ],
+
+  "typesExercices": [
+    { "id": "paire-minimale-tonale", "nom": "Même ou différent ?", "pistes": ["sons"], "audio": true, "description": "Deux mots qui ne diffèrent que par le ton ou par une voyelle : l'apprenant dit s'ils sont identiques." },
+    { "id": "identifier-ton", "nom": "Quel ton ?", "pistes": ["sons", "ecriture"], "audio": true, "description": "Choisir la courbe tonale entendue parmi plusieurs dessins de hauteur." },
+    { "id": "voix-multiples", "nom": "Trois voix, un mot", "pistes": ["sons"], "audio": true, "description": "Le même mot dit par plusieurs locuteurs, pour apprendre à reconnaître le ton malgré la variation de voix." },
+    { "id": "imiter-comparer", "nom": "Répète et compare", "pistes": ["sons"], "audio": true, "description": "L'apprenant s'enregistre ; les deux enregistrements sont rejoués l'un après l'autre." },
+    { "id": "dictee-tonale", "nom": "Dictée", "pistes": ["ecriture", "sons"], "audio": true, "description": "Écrire le mot entendu avec ses tons." },
+    { "id": "lecture-voix-haute", "nom": "Lis à voix haute", "pistes": ["ecriture", "sons"], "audio": true, "description": "Lire un mot ou une phrase écrite puis écouter la référence." },
+    { "id": "associer-son-image", "nom": "Écoute et choisis", "pistes": ["lexique"], "audio": true, "description": "Associer un mot entendu à son image." },
+    { "id": "associer-mot-sens", "nom": "Quel sens ?", "pistes": ["lexique", "sens"], "audio": false, "description": "Associer un mot écrit à sa traduction ou à sa définition." },
+    { "id": "famille-de-mots", "nom": "Fabrique le mot", "pistes": ["lexique", "grammaire"], "audio": false, "description": "Former un dérivé ou un composé à partir d'une base." },
+    { "id": "reconstruire-enonce", "nom": "Remets dans l'ordre", "pistes": ["grammaire"], "audio": true, "description": "Placer sujet, marque prédicative, objet, verbe et complément dans le bon ordre." },
+    { "id": "transformer", "nom": "Transforme", "pistes": ["grammaire"], "audio": true, "description": "Passer de l'affirmatif au négatif, d'un aspect à un autre, d'une personne à une autre." },
+    { "id": "completer-paradigme", "nom": "Complète le tableau", "pistes": ["grammaire"], "audio": false, "description": "Remplir une série de pronoms ou de marques prédicatives." },
+    { "id": "glose-guidee", "nom": "Démonte la phrase", "pistes": ["grammaire", "sens"], "audio": false, "description": "Relier chaque morceau d'une phrase à sa fonction, selon les règles de glose de Leipzig (niveau 3 et plus)." },
+    { "id": "champ-semantique", "nom": "Range les mots", "pistes": ["sens", "milieu"], "audio": false, "description": "Classer des mots dans leurs champs de sens." },
+    { "id": "sens-figure", "nom": "Au propre ou au figuré ?", "pistes": ["sens", "discours"], "audio": false, "description": "Distinguer sens littéral et sens imagé." },
+    { "id": "choix-pragmatique", "nom": "Que dirais-tu ?", "pistes": ["usage"], "audio": true, "description": "Choisir la formule qui convient selon l'interlocuteur (âge, parenté, statut) et le moment." },
+    { "id": "dialogue-guide", "nom": "À toi de parler", "pistes": ["usage", "discours"], "audio": true, "description": "Jeu de rôle avec un interlocuteur enregistré : l'apprenant répond à voix haute." },
+    { "id": "comprehension-ecoute", "nom": "Écoute l'histoire", "pistes": ["discours"], "audio": true, "description": "Questions de compréhension sur un dialogue, un récit ou un conte." },
+    { "id": "proverbe-situation", "nom": "Le bon proverbe", "pistes": ["discours", "usage"], "audio": true, "description": "Associer un proverbe à la situation où il se dit." },
+    { "id": "rappel-rapide", "nom": "Rappel éclair", "pistes": ["lexique", "grammaire", "sons"], "audio": true, "description": "Exercice chronométré sur des éléments déjà sus, pour gagner en automatisme." },
+    { "id": "mediation", "nom": "Explique-le", "pistes": ["usage", "discours"], "audio": true, "description": "Transmettre en français le sens d'une parole entendue, ou l'inverse." },
+    { "id": "contribution", "nom": "Propose au comité", "pistes": ["lexique", "milieu"], "audio": true, "description": "L'apprenant avancé propose une entrée, qui suit le circuit de validation du comité." }
+  ],
+
+  "bandes": [
+    {
+      "id": "b0", "numero": 0, "nom": "Ouvrir l'oreille", "cecr": "Pré-A1",
+      "intention": "Entendre la langue telle qu'elle est avant de la parler : ses tons, ses voyelles, ses consonnes, son écriture, et les premières paroles d'accueil.",
+      "jePeux": [
+        "Je peux entendre que deux mots ne diffèrent que par le ton.",
+        "Je peux lire l'alphabet et reconnaître la notation des tons.",
+        "Je peux saluer selon le moment de la journée et répondre à une salutation.",
+        "Je peux dire mon nom."
+      ],
+      "unites": [
+        { "id": "b0-u1", "titre": "La musique des mots", "pistes": ["sons"], "objectif": "Percevoir que la hauteur de la voix change le sens d'un mot.", "tache": "Reconnaître dix paires de mots qui ne diffèrent que par le ton." },
+        { "id": "b0-u2", "titre": "Voyelles orales et nasales", "pistes": ["sons", "ecriture"], "objectif": "Distinguer et lire les voyelles orales et nasales.", "tache": "Dictée de voyelles." },
+        { "id": "b0-u3", "titre": "Les consonnes de la région", "pistes": ["sons", "ecriture"], "objectif": "Percevoir et prononcer les labio-vélaires (kp, gb), les labialisées (kw, gw) et les implosives (bh, dh).", "tache": "Répéter et comparer une série de mots." },
+        { "id": "b0-u4", "titre": "Lire et écrire les tons", "pistes": ["ecriture", "sons"], "objectif": "Lire la notation officielle des tons et de la nasalité.", "tache": "Lire à voix haute cinq mots écrits." },
+        { "id": "b0-u5", "titre": "Bonjour, au fil de la journée", "pistes": ["usage", "milieu"], "objectif": "Saluer et répondre selon le moment et la personne.", "tache": "Saluer un aîné le matin et répondre à sa question." },
+        { "id": "b0-u6", "titre": "Je m'appelle…", "pistes": ["usage", "grammaire"], "objectif": "Se nommer et demander le nom de quelqu'un.", "tache": "Se présenter en une phrase." }
+      ]
+    },
+    {
+      "id": "b1", "numero": 1, "nom": "Premiers pas", "cecr": "A1",
+      "intention": "Nommer les personnes, le corps, les choses et les lieux proches ; construire ses premières phrases verbales.",
+      "jePeux": [
+        "Je peux présenter ma famille proche.",
+        "Je peux compter et demander un prix au marché.",
+        "Je peux dire où se trouve quelqu'un ou quelque chose.",
+        "Je peux dire ce que je fais, demander quelque chose et dire non."
+      ],
+      "unites": [
+        { "id": "b1-u1", "titre": "La famille proche", "pistes": ["lexique", "grammaire", "milieu"], "objectif": "Nommer la parenté ; la possession inaliénable (noms de parenté et de corps sans connecteur).", "tache": "Présenter trois membres de sa famille." },
+        { "id": "b1-u2", "titre": "Le corps", "pistes": ["lexique", "grammaire", "sens"], "objectif": "Nommer les parties du corps ; observer leurs emplois imagés.", "tache": "Dire où l'on a mal." },
+        { "id": "b1-u3", "titre": "Compter", "pistes": ["lexique", "grammaire"], "objectif": "Les nombres et leur place dans le groupe nominal.", "tache": "Compter des objets jusqu'à vingt." },
+        { "id": "b1-u4", "titre": "Ce qui m'appartient", "pistes": ["grammaire", "lexique"], "objectif": "La possession aliénable, avec connecteur.", "tache": "Dire à qui appartient un objet." },
+        { "id": "b1-u5", "titre": "C'est… / ce n'est pas…", "pistes": ["grammaire"], "objectif": "Les énoncés non verbaux : identification, présentation, qualité.", "tache": "Décrire une image en trois phrases." },
+        { "id": "b1-u6", "titre": "Où est-il ?", "pistes": ["grammaire", "lexique", "milieu"], "objectif": "L'énoncé locatif ; les lieux du village.", "tache": "Indiquer où se trouve une personne." },
+        { "id": "b1-u7", "titre": "Faire quelque chose", "pistes": ["grammaire", "lexique"], "objectif": "La phrase verbale : sujet, marque prédicative, objet, verbe (S–Aux–O–V).", "tache": "Dire trois actions de sa journée." },
+        { "id": "b1-u8", "titre": "Demander", "pistes": ["grammaire", "usage"], "objectif": "L'impératif et la demande polie.", "tache": "Demander un objet à un aîné, puis à un enfant." },
+        { "id": "b1-u9", "titre": "Dire non", "pistes": ["grammaire", "usage"], "objectif": "La négation par les marques prédicatives négatives.", "tache": "Refuser une proposition." },
+        { "id": "b1-u10", "titre": "Poser des questions", "pistes": ["grammaire", "sons"], "objectif": "Mots interrogatifs ; mélodie de la question et ton des mots.", "tache": "Poser cinq questions à un nouveau venu." },
+        { "id": "b1-u11", "titre": "Au marché", "pistes": ["usage", "lexique", "discours"], "objectif": "Unité de synthèse : nombres, prix, politesse de l'échange.", "tache": "Acheter trois produits." },
+        { "id": "b1-u12", "titre": "Les jours et les saisons", "pistes": ["lexique", "milieu"], "objectif": "Le temps qui passe et le temps qu'il fait.", "tache": "Dire quel jour on est et le temps qu'il fait." }
+      ]
+    },
+    {
+      "id": "b2", "numero": 2, "nom": "Dans la cour", "cecr": "A2",
+      "intention": "Parler de sa vie quotidienne au passé, au présent et au futur ; décrire son milieu ; entrer dans la parole imagée.",
+      "jePeux": [
+        "Je peux raconter ce que j'ai fait hier et ce que je ferai demain.",
+        "Je peux décrire des lieux, des plantes, des animaux et des travaux.",
+        "Je peux remercier, demander et refuser poliment.",
+        "Je peux comprendre le sens d'un proverbe simple."
+      ],
+      "unites": [
+        { "id": "b2-u1", "titre": "Ce que je fais d'habitude", "pistes": ["grammaire"], "objectif": "L'aspect habituel et l'aspect neutre.", "tache": "Décrire sa journée type." },
+        { "id": "b2-u2", "titre": "Ce qui s'est passé", "pistes": ["grammaire", "discours"], "objectif": "L'accompli (parfait).", "tache": "Raconter sa journée d'hier." },
+        { "id": "b2-u3", "titre": "Ce qui va se passer", "pistes": ["grammaire"], "objectif": "Le prospectif.", "tache": "Dire ses projets de la semaine." },
+        { "id": "b2-u4", "titre": "Dans, sur, devant", "pistes": ["grammaire", "sens"], "objectif": "Les postpositions et les noms locatifs.", "tache": "Décrire une cour." },
+        { "id": "b2-u5", "titre": "Avec qui, avec quoi", "pistes": ["grammaire"], "objectif": "Les compléments obliques après le verbe.", "tache": "Dire avec quoi on fait un travail." },
+        { "id": "b2-u6", "titre": "Plusieurs, très", "pistes": ["grammaire", "sons"], "objectif": "Le pluriel et l'intensité, y compris par le ton.", "tache": "Décrire un groupe de personnes." },
+        { "id": "b2-u7", "titre": "Fabriquer des mots", "pistes": ["lexique", "grammaire"], "objectif": "Dérivation (agent, diminutif, abstrait) et composition.", "tache": "Former cinq mots nouveaux à partir de bases connues." },
+        { "id": "b2-u8", "titre": "Les champs et les saisons", "pistes": ["milieu", "lexique"], "objectif": "Cultures, outils, calendrier agricole.", "tache": "Décrire un travail des champs." },
+        { "id": "b2-u9", "titre": "Plantes et animaux", "pistes": ["milieu", "sens"], "objectif": "Classifications locales du vivant et usages.", "tache": "Présenter une plante et son usage." },
+        { "id": "b2-u10", "titre": "Remercier, demander, refuser", "pistes": ["usage"], "objectif": "Les formes de politesse selon la relation.", "tache": "Refuser une invitation sans offenser." },
+        { "id": "b2-u11", "titre": "Les premiers proverbes", "pistes": ["discours", "sens"], "objectif": "Sens littéral et sens figuré.", "tache": "Expliquer un proverbe en français." },
+        { "id": "b2-u12", "titre": "Raconter un petit événement", "pistes": ["discours", "grammaire"], "objectif": "Unité de synthèse : récit court enchaîné.", "tache": "Raconter un événement en cinq phrases." }
+      ]
+    },
+    {
+      "id": "b3", "numero": 3, "nom": "Raconter", "cecr": "B1",
+      "intention": "Construire des phrases complexes, mettre en valeur une information, raconter un conte et s'adapter à son interlocuteur.",
+      "jePeux": [
+        "Je peux raconter une histoire en enchaînant les événements.",
+        "Je peux mettre en valeur l'élément important de ma phrase.",
+        "Je peux rapporter les paroles de quelqu'un.",
+        "Je peux reconnaître les principales différences entre variétés de la langue."
+      ],
+      "unites": [
+        { "id": "b3-u1", "titre": "Enchaîner les actions", "pistes": ["grammaire", "discours"], "objectif": "Coordination et enchaînement de propositions.", "tache": "Décrire une recette ou un savoir-faire." },
+        { "id": "b3-u2", "titre": "Mettre en valeur", "pistes": ["grammaire", "usage"], "objectif": "La focalisation et les pronoms focalisés.", "tache": "Corriger une information fausse." },
+        { "id": "b3-u3", "titre": "Quand, si, parce que", "pistes": ["grammaire"], "objectif": "La subordination.", "tache": "Expliquer une décision." },
+        { "id": "b3-u4", "titre": "Il a dit que…", "pistes": ["grammaire", "discours"], "objectif": "Le discours rapporté.", "tache": "Rapporter une conversation." },
+        { "id": "b3-u5", "titre": "Le conte", "pistes": ["discours", "milieu"], "objectif": "Structure du conte, formules d'ouverture et de clôture, rôle de l'auditoire.", "tache": "Suivre un conte et en résumer les étapes." },
+        { "id": "b3-u6", "titre": "Les idéophones", "pistes": ["sens", "sons"], "objectif": "Mots expressifs qui peignent un son, un mouvement, une couleur.", "tache": "Utiliser trois idéophones dans un récit." },
+        { "id": "b3-u7", "titre": "Redoubler pour dire plus", "pistes": ["grammaire", "lexique"], "objectif": "Le redoublement et ses valeurs.", "tache": "Insister sur une qualité ou une action." },
+        { "id": "b3-u8", "titre": "Parler d'ici et d'ailleurs", "pistes": ["usage", "sons"], "objectif": "La variation dialectale et la norme écrite de référence.", "tache": "Reconnaître la variété d'un enregistrement." },
+        { "id": "b3-u9", "titre": "Selon à qui l'on parle", "pistes": ["usage", "milieu"], "objectif": "Registres, âge, statut, adresse respectueuse.", "tache": "Transmettre un même message à un aîné puis à un ami." },
+        { "id": "b3-u10", "titre": "Raconter un conte", "pistes": ["discours"], "objectif": "Unité de synthèse.", "tache": "Raconter un conte connu à voix haute." }
+      ]
+    },
+    {
+      "id": "b4", "numero": 4, "nom": "La parole des anciens", "cecr": "B2",
+      "intention": "Manier la parole imagée et la parole publique ; comprendre la langue dans ses rapports avec les autres langues.",
+      "jePeux": [
+        "Je peux défendre un point de vue.",
+        "Je peux employer un proverbe au bon moment et devant la bonne personne.",
+        "Je peux comprendre les paroles de cérémonie.",
+        "Je peux expliquer les emprunts et l'alternance avec le français et le dioula."
+      ],
+      "unites": [
+        { "id": "b4-u1", "titre": "Argumenter, convaincre", "pistes": ["discours", "grammaire"], "objectif": "Organisation de l'argumentation orale.", "tache": "Défendre une proposition devant un groupe." },
+        { "id": "b4-u2", "titre": "Proverbes en situation", "pistes": ["discours", "usage"], "objectif": "Qui peut dire un proverbe, à qui, quand.", "tache": "Réagir à une situation par un proverbe adapté." },
+        { "id": "b4-u3", "titre": "Paroles de cérémonie", "pistes": ["usage", "milieu"], "objectif": "Vœux, bénédictions, condoléances, selon ce que le comité valide.", "tache": "Présenter des vœux." },
+        { "id": "b4-u4", "titre": "Métaphores et images", "pistes": ["sens", "discours"], "objectif": "Les grands domaines d'images de la langue.", "tache": "Expliquer cinq expressions imagées." },
+        { "id": "b4-u5", "titre": "Chants et poésie orale", "pistes": ["discours", "sons"], "objectif": "Rythme, tons et musique de la parole poétique.", "tache": "Interpréter un court chant." },
+        { "id": "b4-u6", "titre": "La langue et ses voisines", "pistes": ["usage", "lexique"], "objectif": "Emprunts, alternance codique, contact avec le français et le dioula.", "tache": "Analyser une conversation mêlant les langues." },
+        { "id": "b4-u7", "titre": "Débattre", "pistes": ["discours", "usage"], "objectif": "Prendre la parole, la céder, contredire poliment.", "tache": "Mener un échange contradictoire de trois minutes." },
+        { "id": "b4-u8", "titre": "Exposé", "pistes": ["discours"], "objectif": "Unité de synthèse.", "tache": "Présenter un exposé oral de trois minutes." }
+      ]
+    },
+    {
+      "id": "b5", "numero": 5, "nom": "Transmettre", "cecr": "C1",
+      "intention": "Passer de l'apprenant au passeur : traduire, écrire, nommer le monde moderne, enseigner, documenter.",
+      "jePeux": [
+        "Je peux traduire et expliquer fidèlement entre la langue et le français.",
+        "Je peux écrire un texte suivi selon la norme orthographique.",
+        "Je peux enseigner les bases de la langue à un enfant.",
+        "Je peux enregistrer et transcrire la parole d'un aîné avec son accord."
+      ],
+      "unites": [
+        { "id": "b5-u1", "titre": "Traduire et expliquer", "pistes": ["usage", "discours"], "objectif": "La médiation entre la langue et le français.", "tache": "Traduire un message officiel pour un aîné." },
+        { "id": "b5-u2", "titre": "Nommer le monde moderne", "pistes": ["lexique", "milieu"], "objectif": "Néologie et terminologie, en lien avec le comité.", "tache": "Proposer un terme pour une notion nouvelle." },
+        { "id": "b5-u3", "titre": "Écrire", "pistes": ["ecriture", "grammaire"], "objectif": "Norme orthographique, découpage des mots, texte suivi.", "tache": "Écrire une lettre d'une page." },
+        { "id": "b5-u4", "titre": "Enseigner à un enfant", "pistes": ["usage", "milieu"], "objectif": "La transmission d'une génération à l'autre.", "tache": "Préparer une mini-leçon pour un enfant." },
+        { "id": "b5-u5", "titre": "Documenter la parole d'un aîné", "pistes": ["discours", "milieu", "ecriture"], "objectif": "Consentement, enregistrement, transcription, traduction.", "tache": "Enregistrer et transcrire un récit de deux minutes." },
+        { "id": "b5-u6", "titre": "Devenir contributeur", "pistes": ["lexique", "milieu"], "objectif": "Proposer des entrées au comité scientifique.", "tache": "Proposer cinq entrées complètes." }
+      ]
+    }
+  ],
+
+  "specificites": {
+    "dan": {
+      "nom": "Dan (yacouba)",
+      "locuteurs": "environ 1 300 000 en Côte d'Ivoire (Vydrin 2021)",
+      "region": "Départements de Biankouma, Sipilou et Man (Tonkpi) ; Liberia (Gio)",
+      "normes": "Dialecte gouèta (Santa) pour la zone nord-est ; dialecte de Blo pour la zone sud-ouest (Vydrin 2021)",
+      "voyelles": "12 voyelles orales et 9 nasales ; nasalité notée par -n après la voyelle",
+      "consonnes": "Dont labio-vélaires kp, gb ; labialisées kw, gw ; implosives notées bh, dh",
+      "tons": "5 tons ponctuels (extra-haut, haut, moyen, bas, extra-bas) et 3 tons modulés ; le ton porte aussi la grammaire (aspect, pluriel, construction génitivale)",
+      "grammaire": "Sujet – marque prédicative pronominale – objet – verbe – oblique ; 10 séries de pronoms ; noms relationnels (inaliénables) et noms libres (aliénables, avec connecteur) ; noms locatifs avec déclinaison ; postpositions",
+      "source": "Vydrin, V. (2021). Esquisse de grammaire du dan de l'Est (dialecte de Gouèta). Mandenkan 64, 3-80."
+    },
+    "toura": {
+      "nom": "Toura (wan)",
+      "locuteurs": "environ 50 000 à 67 000 (selon les sources, 2005-2017)",
+      "region": "Département de Biankouma, zone montagneuse au nord-est de Man ; diaspora à Abidjan et Yamoussoukro",
+      "dialectes": "Naò, Boo, Yiligele, Gwéò, Wáádú, Guse",
+      "tons": "4 tons ponctuels (Bearth 1968) ; orthographe : haut ‹á›, mi-haut ‹â›, mi-bas non marqué, bas ‹à› ; enclitiques tonals notés après le mot",
+      "ecriture": "Orthographe pratique élaborée par Thomas Bearth ; nasalité notée par -n ; question du découpage des mots composés traitée par Idiatov",
+      "grammaire": "Même architecture mandé-sud (ordre S–Aux–O–V–X, possession aliénable/inaliénable, postpositions) ; les détails propres au toura sont à établir à partir de Bearth (1971, 1983) et Idiatov (2008)",
+      "source": "Bearth, T. (1971). L'énoncé toura. SIL ; Idiatov, D. (2008). Dictionnaire toura-français ; Idiatov, D. La détermination des limites des mots : l'exemple de l'orthographe toura. Mandenkan 41."
+    }
+  }
+}

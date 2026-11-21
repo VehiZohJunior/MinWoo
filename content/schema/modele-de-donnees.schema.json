@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vehizohjunior.github.io/MinWoo/content/schema/modele-de-donnees.schema.json",
+  "title": "MinWoo — modèle des données saisies par le comité scientifique",
+  "description": "Chaque contenu de langue publié sur MinWoo appartient à l'un de ces types. Aucun contenu n'est publié sans le statut « valide », attribué par une personne différente de celle qui l'a saisi.",
+
+  "$defs": {
+    "langue": { "enum": ["dan", "toura", "gouro"] },
+
+    "tracabilite": {
+      "type": "object",
+      "required": ["saisiPar", "dateSaisie", "statut", "source"],
+      "properties": {
+        "source": {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": { "enum": ["locuteur", "enquete", "ouvrage", "corpus"] },
+            "reference": { "type": "string", "description": "Ouvrage, page, ou identifiant de l'enquête." }
+          }
+        },
+        "saisiPar": { "type": "string", "description": "Identifiant du membre du comité." },
+        "dateSaisie": { "type": "string", "format": "date" },
+        "statut": { "enum": ["brouillon", "propose", "valide", "rejete", "a-revoir"] },
+        "validePar": { "type": "string", "description": "Doit être différent de saisiPar." },
+        "dateValidation": { "type": "string", "format": "date" },
+        "motifRejet": { "type": "string" }
+      }
+    },
+
+    "enregistrement": {
+      "type": "object",
+      "required": ["fichier", "locuteur", "consentement"],
+      "properties": {
+        "fichier": { "type": "string" },
+        "locuteur": {
+          "type": "object",
+          "required": ["id", "variete"],
+          "properties": {
+            "id": { "type": "string", "description": "Pseudonyme, jamais le nom complet sans accord écrit." },
+            "sexe": { "enum": ["F", "M"] },
+            "trancheAge": { "enum": ["moins-de-25", "25-50", "plus-de-50"] },
+            "variete": { "type": "string", "description": "Dialecte ou village d'origine." }
+          }
+        },
+        "consentement": { "type": "boolean", "description": "Accord éclairé du locuteur pour la diffusion publique." },
+        "attribution": { "type": "string", "description": "Comment le locuteur souhaite être crédité." }
+      }
+    },
+
+    "exempleGlose": {
+      "type": "object",
+      "required": ["texte", "traductionFr"],
+      "description": "Exemple présenté selon les règles de glose de Leipzig : ligne de langue, ligne morphème par morphème, traduction.",
+      "properties": {
+        "texte": { "type": "string" },
+        "decoupage": { "type": "string" },
+        "glose": { "type": "string" },
+        "traductionFr": { "type": "string" },
+        "traductionEn": { "type": "string" },
+        "enregistrements": { "type": "array", "items": { "$ref": "#/$defs/enregistrement" } }
+      }
+    },
+
+    "entreeLexicale": {
+      "type": "object",
+      "required": ["id", "langue", "forme", "tons", "categorie", "sens", "tracabilite"],
+      "properties": {
+        "id": { "type": "string" },
+        "langue": { "$ref": "#/$defs/langue" },
+        "variete": { "type": "string", "description": "Norme de référence ou dialecte précis." },
+        "forme": { "type": "string", "description": "Orthographe officielle, tons notés." },
+        "api": { "type": "string", "description": "Transcription phonétique (API)." },
+        "tons": { "type": "string", "description": "Schéma tonal explicite, par exemple H-B." },
+        "categorie": { "enum": ["nom", "nom-relationnel", "nom-locatif", "verbe", "adjectif", "adverbe", "numeral", "pronom", "postposition", "determinant", "conjonction", "particule", "ideophone", "interjection"] },
+        "pluriel": { "type": "string" },
+        "formesLiees": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "forme": { "type": "string" },
+              "relation": { "enum": ["derive", "compose", "redouble", "variante-dialectale", "emprunt-de"] },
+              "note": { "type": "string" }
+            }
+          }
+        },
+        "sens": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["glossFr"],
+            "properties": {
+              "glossFr": { "type": "string" },
+              "glossEn": { "type": "string" },
+              "definition": { "type": "string" },
+              "champSemantique": { "type": "string" },
+              "registre": { "enum": ["courant", "respectueux", "familier", "ceremoniel", "enfantin", "vieilli"] },
+              "exemples": { "type": "array", "items": { "$ref": "#/$defs/exempleGlose" } }
+            }
+          }
+        },
+        "noteCulturelle": { "type": "string" },
+        "enregistrements": { "type": "array", "items": { "$ref": "#/$defs/enregistrement" }, "description": "Trois voix différentes visées." },
+        "image": { "type": "string" },
+        "unites": { "type": "array", "items": { "type": "string" }, "description": "Identifiants d'unités du programme, par exemple b1-u1." },
+        "tracabilite": { "$ref": "#/$defs/tracabilite" }
+      }
+    },
+
+    "pointDeGrammaire": {
+      "type": "object",
+      "required": ["id", "langue", "titre", "explication", "exemples", "tracabilite"],
+      "properties": {
+        "id": { "type": "string" },
+        "langue": { "$ref": "#/$defs/langue" },
+        "titre": { "type": "string" },
+        "piste": { "enum": ["sons", "ecriture", "grammaire", "sens"] },
+        "explication": { "type": "string", "description": "En français simple, sans jargon non expliqué." },
+        "regle": { "type": "string" },
+        "exemples": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/exempleGlose" } },
+        "prerequis": { "type": "array", "items": { "type": "string" } },
+        "unites": { "type": "array", "items": { "type": "string" } },
+        "tracabilite": { "$ref": "#/$defs/tracabilite" }
+      }
+    },
+
+    "situationPragmatique": {
+      "type": "object",
+      "required": ["id", "langue", "situation", "roles", "enonces", "tracabilite"],
+      "properties": {
+        "id": { "type": "string" },
+        "langue": { "$ref": "#/$defs/langue" },
+        "situation": { "type": "string", "description": "Par exemple : saluer un aîné le matin." },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": { "type": "string" },
+              "age": { "type": "string" },
+              "relation": { "type": "string" }
+            }
+          }
+        },
+        "enonces": { "type": "array", "items": { "$ref": "#/$defs/exempleGlose" } },
+        "aEviter": { "type": "string", "description": "Ce qui serait impoli ou maladroit, et pourquoi." },
+        "unites": { "type": "array", "items": { "type": "string" } },
+        "tracabilite": { "$ref": "#/$defs/tracabilite" }
+      }
+    },
+
+    "texteOral": {
+      "type": "object",
+      "required": ["id", "langue", "genre", "transcription", "traductionFr", "tracabilite"],
+      "properties": {
+        "id": { "type": "string" },
+        "langue": { "$ref": "#/$defs/langue" },
+        "genre": { "enum": ["conte", "proverbe", "devinette", "chant", "recit", "dialogue", "parole-ceremonielle"] },
+        "titre": { "type": "string" },
+        "transcription": { "type": "string" },
+        "glose": { "type": "string" },
+        "traductionFr": { "type": "string" },
+        "contexteDEmploi": { "type": "string", "description": "Qui dit ce texte, à qui, quand." },
+        "restrictions": { "type": "string", "description": "Contenu réservé ou à ne pas diffuser publiquement." },
+        "enregistrements": { "type": "array", "items": { "$ref": "#/$defs/enregistrement" } },
+        "unites": { "type": "array", "items": { "type": "string" } },
+        "tracabilite": { "$ref": "#/$defs/tracabilite" }
+      }
+    },
+
+    "fichePhonologique": {
+      "type": "object",
+      "required": ["id", "langue", "unite", "pairesMinimales", "tracabilite"],
+      "properties": {
+        "id": { "type": "string" },
+        "langue": { "$ref": "#/$defs/langue" },
+        "unite": { "type": "string", "description": "Un phonème, un ton ou une opposition, par exemple « ton haut / ton bas »." },
+        "description": { "type": "string" },
+        "realisations": { "type": "string" },
+        "pairesMinimales": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "a": { "type": "string" },
+              "b": { "type": "string" },
+              "sensA": { "type": "string" },
+              "sensB": { "type": "string" }
+            }
+          }
+        },
+        "enregistrements": { "type": "array", "items": { "$ref": "#/$defs/enregistrement" } },
+        "tracabilite": { "$ref": "#/$defs/tracabilite" }
+      }
+    }
+  }
+}
