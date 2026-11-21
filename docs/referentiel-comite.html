@@ -1,0 +1,310 @@
+<title>Référentiel MinWoo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Noto+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<style>
+/* Mise en page : une colonne de lecture large, bandes tissées comme repères ; tokens repris du système de design MinWoo */
+:root {
+  --encre: #171B2E; --indigo-tisse: #303566; --bleu-delave: #6E76A0; --coton: #F2EDE2;
+  --ivoire: #E8DEC7; --raphia: #B7A582; --braise: #B7431E; --or: #C08B3E;
+  --bg: var(--coton); --surface: var(--ivoire); --surface-2: #FBF8F1; --texte: var(--encre);
+  --texte-att: #555C80; --bordure: #D3C6A8; --accent: var(--braise); --accent-texte: #9A3717;
+  --f-titre: 'Fraunces', Georgia, serif; --f-texte: 'Noto Sans', 'Segoe UI', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #12152A; --surface: #23274A; --surface-2: #1B1F3A; --texte: #F2EDE2;
+  --texte-att: #A6ADD2; --bordure: #3A3F6A; --accent: #D9693F; --accent-texte: #E8825A; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #12152A; --surface: #23274A; --surface-2: #1B1F3A; --texte: #F2EDE2;
+  --texte-att: #A6ADD2; --bordure: #3A3F6A; --accent: #D9693F; --accent-texte: #E8825A; color-scheme: dark; }
+
+body { background: var(--bg); color: var(--texte); font-family: var(--f-texte); font-size: 16px; line-height: 1.65; }
+.bandeau { height: 10px; background: repeating-linear-gradient(100deg, var(--encre) 0 22px, var(--coton) 22px 28px, var(--indigo-tisse) 28px 40px, var(--coton) 40px 44px, var(--encre) 44px 70px, var(--or) 70px 76px, var(--indigo-tisse) 76px 96px, var(--coton) 96px 100px); }
+.page { max-width: 860px; margin: 0 auto; padding-block: 40px 80px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 56px; }
+h1, h2, h3 { font-family: var(--f-titre); text-wrap: balance; line-height: 1.2; margin: 0; }
+h1 { font-size: clamp(1.9rem, 5vw, 2.7rem); font-weight: 700; }
+h2 { font-size: clamp(1.4rem, 3.4vw, 1.8rem); font-weight: 600; }
+h3 { font-size: 1.15rem; font-weight: 600; }
+p { margin: 0; }
+.etiquette { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texte-att); }
+section { display: flex; flex-direction: column; gap: 18px; }
+section > p, .lecture { max-width: 66ch; }
+a { color: var(--accent-texte); }
+a:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+.entete { display: flex; flex-direction: column; gap: 16px; }
+.chapo { font-size: 1.12rem; max-width: 62ch; }
+.chiffres { display: flex; flex-wrap: wrap; gap: 10px 28px; font-size: 0.95rem; color: var(--texte-att); }
+.chiffres b { font-family: var(--f-titre); font-size: 1.5rem; color: var(--texte); margin-right: 6px; font-variant-numeric: tabular-nums; }
+.appel { border-left: 4px solid var(--accent); background: var(--surface-2); padding: 16px 20px; border-radius: 0 10px 10px 0; display: flex; flex-direction: column; gap: 6px; max-width: 66ch; }
+.liens { display: flex; flex-wrap: wrap; gap: 10px 20px; font-size: 0.95rem; }
+
+nav.sommaire ol { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 6px 24px; }
+nav.sommaire li { counter-increment: s; }
+nav.sommaire a { text-decoration: none; color: var(--texte); border-bottom: 1px solid var(--bordure); display: block; padding: 6px 0; }
+nav.sommaire a::before { content: counter(s) ". "; color: var(--texte-att); font-variant-numeric: tabular-nums; }
+nav.sommaire a:hover { color: var(--accent-texte); }
+
+ol.principes { margin: 0; padding-left: 1.4em; display: flex; flex-direction: column; gap: 10px; max-width: 70ch; }
+ol.principes li::marker { font-family: var(--f-titre); font-weight: 700; color: var(--accent-texte); }
+
+.tableau { overflow-x: auto; border: 1px solid var(--bordure); border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 0.92rem; }
+th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--bordure); }
+thead th { background: var(--surface); font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--texte-att); }
+tbody th { font-weight: 700; white-space: nowrap; }
+tr:last-child th, tr:last-child td { border-bottom: 0; }
+.source { font-size: 0.85rem; color: var(--texte-att); font-style: italic; }
+ul.points { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 8px; max-width: 70ch; }
+
+.bande { border: 1px solid var(--bordure); border-radius: 12px; overflow: hidden; background: var(--surface-2); }
+.bande + .bande { margin-top: 12px; }
+.bande summary { list-style: none; cursor: pointer; display: flex; flex-direction: column; gap: 10px; padding-bottom: 16px; }
+.bande summary::-webkit-details-marker { display: none; }
+.tissage { display: block; height: 18px; }
+.tete { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; padding: 0 18px; }
+.bnum { font-family: var(--f-titre); font-weight: 700; font-size: 1.4rem; color: var(--texte-att); font-variant-numeric: tabular-nums; }
+.bnom { font-family: var(--f-titre); font-weight: 600; font-size: 1.25rem; }
+.cecr { font-size: 0.78rem; font-weight: 700; border: 1px solid var(--bordure); border-radius: 999px; padding: 1px 10px; }
+.nb { font-size: 0.85rem; color: var(--texte-att); margin-left: auto; }
+.nb::after { content: " ▸"; }
+.bande[open] .nb::after { content: " ▾"; }
+.intention { padding: 0 18px; color: var(--texte-att); max-width: 70ch; }
+.bande-corps { padding: 0 18px 18px; display: flex; flex-direction: column; gap: 16px; }
+.jepeux { background: var(--surface); border-radius: 10px; padding: 12px 16px; }
+.jepeux ul { margin: 6px 0 0; padding-left: 1.2em; }
+ol.unites { list-style: none; margin: 0; padding: 0; }
+ol.unites li { display: flex; gap: 12px; padding: 12px 0; border-top: 1px solid var(--bordure); }
+.num { font-variant-numeric: tabular-nums; color: var(--texte-att); font-size: 0.85rem; min-width: 2.4em; padding-top: 2px; }
+.u-corps { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.obj { color: var(--texte-att); font-size: 0.93rem; }
+.tache { font-size: 0.88rem; }
+.tache em { font-style: normal; font-weight: 700; margin-right: 4px; }
+.pistes { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.piste { font-size: 0.72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--bordure); }
+
+.t-b0 { background: repeating-linear-gradient(90deg, var(--raphia) 0 10px, var(--coton) 10px 14px, var(--ivoire) 14px 30px, var(--coton) 30px 34px); }
+.t-b1 { background: repeating-linear-gradient(90deg, var(--indigo-tisse) 0 18px, var(--coton) 18px 22px, var(--bleu-delave) 22px 28px, var(--coton) 28px 32px); }
+.t-b2 { background: repeating-linear-gradient(90deg, var(--encre) 0 16px, var(--coton) 16px 20px, var(--or) 20px 24px, var(--coton) 24px 28px, var(--indigo-tisse) 28px 40px, var(--coton) 40px 44px); }
+.t-b3 { background: repeating-linear-gradient(90deg, var(--indigo-tisse) 0 20px, var(--coton) 20px 23px, var(--encre) 23px 33px, var(--braise) 33px 36px, var(--coton) 36px 39px); }
+.t-b4 { background: repeating-linear-gradient(90deg, var(--encre) 0 12px, var(--or) 12px 18px, var(--encre) 18px 30px, var(--coton) 30px 33px, var(--or) 33px 36px, var(--coton) 36px 39px); }
+.t-b5 { background: repeating-linear-gradient(90deg, var(--braise) 0 14px, var(--encre) 14px 18px, var(--or) 18px 22px, var(--encre) 22px 26px, var(--braise) 26px 40px, var(--coton) 40px 43px); }
+
+.grille-pistes { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+.piste-carte { display: flex; gap: 12px; padding: 14px 16px; border: 1px solid var(--bordure); border-radius: 10px; }
+.piste-carte .code { font-family: var(--f-titre); font-weight: 700; color: var(--accent-texte); min-width: 1.8em; }
+.piste-carte div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.disc { font-size: 0.8rem; color: var(--texte-att); }
+.piste-carte p { font-size: 0.9rem; }
+
+ol.cycle { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+ol.cycle li { display: flex; gap: 14px; padding: 12px 0; border-top: 1px solid var(--bordure); }
+.rond { width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--or); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; }
+ol.cycle li div { display: flex; flex-direction: column; gap: 2px; }
+.volet { font-size: 0.8rem; color: var(--texte-att); }
+.regle { font-size: 0.93rem; }
+
+ol.decisions { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+ol.decisions li { display: flex; gap: 12px; padding: 16px; background: var(--surface); border-radius: 10px; }
+.dn { font-family: var(--f-titre); font-weight: 700; font-size: 1.4rem; color: var(--accent-texte); line-height: 1; }
+ol.decisions li div { display: flex; flex-direction: column; gap: 4px; }
+ol.decisions p { font-size: 0.92rem; }
+
+ol.biblio { margin: 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 0.9rem; max-width: 75ch; }
+ol.biblio li { padding-left: 1.6em; text-indent: -1.6em; }
+footer { font-size: 0.85rem; color: var(--texte-att); border-top: 1px solid var(--bordure); padding-top: 18px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="bandeau" aria-hidden="true"></div>
+<main class="page">
+
+<header class="entete">
+  <span class="etiquette">MinWoo · Comité scientifique · Document de travail v1.0 · 21 novembre 2026</span>
+  <h1>Référentiel pédagogique et linguistique</h1>
+  <p class="chapo">Comment un débutant complet progresse, en dan ou en toura, depuis la toute première écoute jusqu'à pouvoir transmettre la langue à son tour. Ce document fixe l'architecture ; les mots, phrases et enregistrements viendront exclusivement du comité, après double validation.</p>
+  <p class="chiffres"><span><b>6</b>bandes</span><span><b>54</b>unités</span><span><b>8</b>pistes</span><span><b>22</b>types d'exercices</span><span><b>Pré-A1 → C1</b></span></p>
+  <div class="appel">
+    <b>Ce que nous attendons du comité</b>
+    <p>Relire l'architecture, puis trancher les six décisions de la section 8. Aucune donnée de langue n'a été inventée : les seules formes citées proviennent de publications, avec leur référence.</p>
+  </div>
+  <p class="liens"><a href="https://vehizohjunior.github.io/MinWoo/app/programme.html">Voir le programme dans l'application</a><a href="https://vehizohjunior.github.io/MinWoo/app/">Ouvrir l'application MinWoo</a></p>
+</header>
+
+<nav class="sommaire" aria-label="Sommaire">
+  <ol>
+    <li><a href="#principes">Dix principes</a></li>
+    <li><a href="#langues">Ce que la recherche établit</a></li>
+    <li><a href="#bandes">Six bandes, 54 unités</a></li>
+    <li><a href="#pistes">Huit pistes</a></li>
+    <li><a href="#unite">L'unité type</a></li>
+    <li><a href="#exercices">Types d'exercices</a></li>
+    <li><a href="#donnees">Évaluation et données</a></li>
+    <li><a href="#decisions">Décisions du comité</a></li>
+    <li><a href="#methodes">Méthodes existantes</a></li>
+    <li><a href="#bibliographie">Bibliographie</a></li>
+  </ol>
+</nav>
+
+<section id="principes">
+  <h2>1. Dix principes</h2>
+  <ol class="principes"><li><b>L&#x27;apprenant agit dans une situation réelle.</b> Chaque unité aboutit à une tâche de communication (saluer un aîné, acheter au marché, raconter un conte), selon l&#x27;approche actionnelle du CECR.</li><li><b>Quatre volets équilibrés.</b> Écoute centrée sur le sens, production centrée sur le sens, étude explicite de la langue et fluidité, en proportions voisines (Nation 2007). L&#x27;étude explicite ne dépasse pas un quart du temps.</li><li><b>L&#x27;oreille d&#x27;abord.</b> On entend avant de parler, et on entend plusieurs voix : l&#x27;entraînement perceptif à voix multiples améliore la perception des tons chez l&#x27;adulte et se transfère en partie à la production (Wang et al. 1999 ; Sakai &amp; Moorman 2018). D&#x27;où trois enregistrements par mot, par des locuteurs différents.</li><li><b>Le ton fait partie du mot dès le premier jour.</b> En dan, le ton distingue les mots et porte une partie de la grammaire (Vydrin 2021). Il n&#x27;est jamais présenté comme un détail réservé aux avancés.</li><li><b>La grammaire se découvre avant de s&#x27;expliquer.</b> L&#x27;apprenant observe des exemples, remarque la régularité, puis reçoit l&#x27;explication en français simple.</li><li><b>On se souvient de ce qu&#x27;on rappelle.</b> Révision espacée et rappel actif plutôt que relecture (Pimsleur 1967 ; Roediger &amp; Karpicke 2006 ; Cepeda et al. 2006).</li><li><b>La langue vit dans une société.</b> Variation dialectale, registres, âge et statut des interlocuteurs, contact avec le français et le dioula sont enseignés, pas gommés.</li><li><b>La langue est la mémoire d&#x27;un milieu.</b> Parenté, calendrier agricole, plantes, animaux, lieux et savoir-faire sont des contenus à part entière (Haugen 1972, écologie des langues).</li><li><b>Rien sans source ni validation.</b> Chaque donnée porte sa source, son locuteur, son consentement, et la validation d&#x27;un second membre du comité. Exemples présentés selon les règles de glose de Leipzig.</li><li><b>Un outil d&#x27;aménagement linguistique.</b> La plateforme contribue à la planification de l&#x27;acquisition (Cooper 1989), à la transmission intergénérationnelle et au matériel d&#x27;enseignement, deux facteurs de vitalité retenus par l&#x27;UNESCO (2003), dans la continuité de l&#x27;ILA et du Projet École Intégrée.</li></ol>
+</section>
+
+<section id="langues">
+  <h2>2. Ce que la recherche établit sur les langues pilotes</h2>
+  <h3>Dan (yacouba)</h3>
+  <p class="source">Vydrin (2021), esquisse de grammaire du dan de l'Est, dialecte de Gouèta ; Vydrin &amp; Mongnan (2008).</p>
+  <div class="tableau"><table>
+    <thead><tr><th scope="col">Domaine</th><th scope="col">Données publiées</th><th scope="col">Conséquence pour l'enseignement</th></tr></thead>
+    <tbody><tr><th scope='row'>Locuteurs</th><td>Environ 1 300 000 en Côte d&#x27;Ivoire ; Biankouma, Sipilou, Man</td><td>Public large, diaspora importante</td></tr><tr><th scope='row'>Normes</th><td>Gouèta (Santa) pour le nord-est ; Blo pour le sud-ouest</td><td>Une norme de référence par cours, variantes signalées</td></tr><tr><th scope='row'>Voyelles</th><td>12 orales, 9 nasales ; nasalité écrite par -n</td><td>Unité dédiée dès la bande 0</td></tr><tr><th scope='row'>Consonnes</th><td>Labio-vélaires kp, gb ; labialisées kw, gw ; implosives bh, dh</td><td>Unité dédiée aux consonnes de la région</td></tr><tr><th scope='row'>Tons</th><td>5 tons ponctuels et 3 tons modulés ; échelle illustrée par Vydrin : ka̋a, káa, kāa, kàa, kȁa</td><td>Perception progressive : tons éloignés d&#x27;abord, puis tons voisins</td></tr><tr><th scope='row'>Ton grammatical</th><td>Extra-bas : aspect neutre du verbe, tête de construction génitivale ; pluriel et intensité des adjectifs par le ton</td><td>Les tons rejoignent la grammaire dès la bande 2</td></tr><tr><th scope='row'>Ordre des mots</th><td>Sujet – marque prédicative pronominale – objet – verbe – oblique</td><td>Exercices « Remets dans l&#x27;ordre » en bandes 1 et 2</td></tr><tr><th scope='row'>Pronoms</th><td>10 séries ; marques prédicatives fusionnant personne, aspect, mode et polarité</td><td>Enseignées par paradigmes, en contexte</td></tr><tr><th scope='row'>Possession</th><td>Noms relationnels sans connecteur ; noms libres avec bhȁ ou ȁ</td><td>Deux unités : famille et corps, puis objets possédés</td></tr><tr><th scope='row'>Lieux</th><td>Noms locatifs avec déclinaison ; postpositions</td><td>Unité « Dans, sur, devant »</td></tr><tr><th scope='row'>Formation des mots</th><td>Dérivation, composition, préverbes, redoublement</td><td>Unités « Fabriquer des mots » et « Redoubler »</td></tr></tbody>
+  </table></div>
+  <h3>Toura (wan)</h3>
+  <p class="source">Bearth (1968, 1971, 1983) ; Idiatov (2008 ; <i>Mandenkan</i> 41).</p>
+  <ul class="points"><li>Environ 50 000 à 67 000 locuteurs selon les sources ; département de Biankouma, au nord-est de Man ; forte présence à Abidjan et Yamoussoukro.</li><li>Dialectes : naò, boo, yiligele, gwéò, wáádú, guse.</li><li>Quatre tons ponctuels (Bearth 1968). Orthographe pratique de Thomas Bearth : haut ‹á›, mi-haut ‹â›, mi-bas non marqué, bas ‹à› ; enclitiques tonals notés après le mot ; nasalité par -n.</li><li>Séparer ou lier les mots composés est une vraie difficulté orthographique ; Idiatov propose des critères explicites, à adopter ou adapter par le comité.</li><li>Même architecture mandé-sud que le dan ; les détails propres au toura sont à établir à partir de Bearth (1971, 1983) et Idiatov (2008) avant la rédaction des unités de grammaire.</li></ul>
+  <h3>Ce que les deux langues ont en commun</h3>
+  <p>Le mandé-sud partage un ordre des constituants rigide S–Aux–O–V–X, des pronoms qui fusionnent la personne et l'aspect, une distinction aliénable/inaliénable, des postpositions, des idéophones, des constructions en chaîne et des marques de focalisation (Khachaturyan 2021 ; Idiatov 2017). Le même squelette de programme sert donc au dan et au toura, et servira au gouro ; seul le contenu de chaque unité change.</p>
+</section>
+
+<section id="bandes">
+  <h2>3. Le pagne de la langue : six bandes, 54 unités</h2>
+  <p>Un pagne est fait de bandes étroites tissées puis cousues ensemble. Chaque bande correspond à un niveau du CECR ; la dernière fait de l'apprenant un passeur et un contributeur du comité. Ouvrez une bande pour voir ses unités.</p>
+  <div>
+<details class="bande" id="bande-0">
+  <summary>
+    <span class="tissage t-b0"></span>
+    <span class="tete"><span class="bnum">0</span><span class="bnom">Ouvrir l&#x27;oreille</span><span class="cecr">Pré-A1</span><span class="nb">6 unités</span></span>
+    <span class="intention">Entendre la langue telle qu&#x27;elle est avant de la parler : ses tons, ses voyelles, ses consonnes, son écriture, et les premières paroles d&#x27;accueil.</span>
+  </summary>
+  <div class="bande-corps">
+    <div class="jepeux"><span class="etiquette">À la fin de la bande, l'apprenant peut…</span><ul><li>Je peux entendre que deux mots ne diffèrent que par le ton.</li><li>Je peux lire l&#x27;alphabet et reconnaître la notation des tons.</li><li>Je peux saluer selon le moment de la journée et répondre à une salutation.</li><li>Je peux dire mon nom.</li></ul></div>
+    <ol class="unites"><li><span class="num">0.1</span><div class="u-corps"><b>La musique des mots</b><span class="obj">Percevoir que la hauteur de la voix change le sens d&#x27;un mot.</span><span class="tache"><em>Tâche</em> Reconnaître dix paires de mots qui ne diffèrent que par le ton.</span><span class="pistes"><span class="piste">Sons et tons</span></span></div></li><li><span class="num">0.2</span><div class="u-corps"><b>Voyelles orales et nasales</b><span class="obj">Distinguer et lire les voyelles orales et nasales.</span><span class="tache"><em>Tâche</em> Dictée de voyelles.</span><span class="pistes"><span class="piste">Sons et tons</span><span class="piste">Écriture</span></span></div></li><li><span class="num">0.3</span><div class="u-corps"><b>Les consonnes de la région</b><span class="obj">Percevoir et prononcer les labio-vélaires (kp, gb), les labialisées (kw, gw) et les implosives (bh, dh).</span><span class="tache"><em>Tâche</em> Répéter et comparer une série de mots.</span><span class="pistes"><span class="piste">Sons et tons</span><span class="piste">Écriture</span></span></div></li><li><span class="num">0.4</span><div class="u-corps"><b>Lire et écrire les tons</b><span class="obj">Lire la notation officielle des tons et de la nasalité.</span><span class="tache"><em>Tâche</em> Lire à voix haute cinq mots écrits.</span><span class="pistes"><span class="piste">Écriture</span><span class="piste">Sons et tons</span></span></div></li><li><span class="num">0.5</span><div class="u-corps"><b>Bonjour, au fil de la journée</b><span class="obj">Saluer et répondre selon le moment et la personne.</span><span class="tache"><em>Tâche</em> Saluer un aîné le matin et répondre à sa question.</span><span class="pistes"><span class="piste">Usage</span><span class="piste">Culture et milieu</span></span></div></li><li><span class="num">0.6</span><div class="u-corps"><b>Je m&#x27;appelle…</b><span class="obj">Se nommer et demander le nom de quelqu&#x27;un.</span><span class="tache"><em>Tâche</em> Se présenter en une phrase.</span><span class="pistes"><span class="piste">Usage</span><span class="piste">Grammaire</span></span></div></li></ol>
+  </div>
+</details>
+
+<details class="bande" id="bande-1">
+  <summary>
+    <span class="tissage t-b1"></span>
+    <span class="tete"><span class="bnum">1</span><span class="bnom">Premiers pas</span><span class="cecr">A1</span><span class="nb">12 unités</span></span>
+    <span class="intention">Nommer les personnes, le corps, les choses et les lieux proches ; construire ses premières phrases verbales.</span>
+  </summary>
+  <div class="bande-corps">
+    <div class="jepeux"><span class="etiquette">À la fin de la bande, l'apprenant peut…</span><ul><li>Je peux présenter ma famille proche.</li><li>Je peux compter et demander un prix au marché.</li><li>Je peux dire où se trouve quelqu&#x27;un ou quelque chose.</li><li>Je peux dire ce que je fais, demander quelque chose et dire non.</li></ul></div>
+    <ol class="unites"><li><span class="num">1.1</span><div class="u-corps"><b>La famille proche</b><span class="obj">Nommer la parenté ; la possession inaliénable (noms de parenté et de corps sans connecteur).</span><span class="tache"><em>Tâche</em> Présenter trois membres de sa famille.</span><span class="pistes"><span class="piste">Mots</span><span class="piste">Grammaire</span><span class="piste">Culture et milieu</span></span></div></li><li><span class="num">1.2</span><div class="u-corps"><b>Le corps</b><span class="obj">Nommer les parties du corps ; observer leurs emplois imagés.</span><span class="tache"><em>Tâche</em> Dire où l&#x27;on a mal.</span><span class="pistes"><span class="piste">Mots</span><span class="piste">Grammaire</span><span class="piste">Sens</span></span></div></li><li><span class="num">1.3</span><div class="u-corps"><b>Compter</b><span class="obj">Les nombres et leur place dans le groupe nominal.</span><span class="tache"><em>Tâche</em> Compter des objets jusqu&#x27;à vingt.</span><span class="pistes"><span class="piste">Mots</span><span class="piste">Grammaire</span></span></div></li><li><span class="num">1.4</span><div class="u-corps"><b>Ce qui m&#x27;appartient</b><span class="obj">La possession aliénable, avec connecteur.</span><span class="tache"><em>Tâche</em> Dire à qui appartient un objet.</span><span class="pistes"><span class="piste">Grammaire</span><span class="piste">Mots</span></span></div></li><li><span class="num">1.5</span><div class="u-corps"><b>C&#x27;est… / ce n&#x27;est pas…</b><span class="obj">Les énoncés non verbaux : identification, présentation, qualité.</span><span class="tache"><em>Tâche</em> Décrire une image en trois phrases.</span><span class="pistes"><span class="piste">Grammaire</span></span></div></li><li><span class="num">1.6</span><div class="u-corps"><b>Où est-il ?</b><span class="obj">L&#x27;énoncé locatif ; les lieux du village.</span><span class="tache"><em>Tâche</em> Indiquer où se trouve une personne.</span><span class="pistes"><span class="piste">Grammaire</span><span class="piste">Mots</span><span class="piste">Culture et milieu</span></span></div></li><li><span class="num">1.7</span><div class="u-corps"><b>Faire quelque chose</b><span class="obj">La phrase verbale : sujet, marque prédicative, objet, verbe (S–Aux–O–V).</span><span class="tache"><em>Tâche</em> Dire trois actions de sa journée.</span><span class="pistes"><span class="piste">Grammaire</span><span class="piste">Mots</span></span></div></li><li><span class="num">1.8</span><div class="u-corps"><b>Demander</b><span class="obj">L&#x27;impératif et la demande polie.</span><span class="tache"><em>Tâche</em> Demander un objet à un aîné, puis à un enfant.</span><span class="pistes"><span class="piste">Grammaire</span><span class="piste">Usage</span></span></div></li><li><span class="num">1.9</span><div class="u-corps"><b>Dire non</b><span class="obj">La négation par les marques prédicatives négatives.</span><span class="tache"><em>Tâche</em> Refuser une proposition.</span><span class="pistes"><span class="piste">Grammaire</span><span class="piste">Usage</span></span></div></li><li><span class="num">1.10</span><div class="u-corps"><b>Poser des questions</b><span class="obj">Mots interrogatifs ; mélodie de la question et ton des mots.</span><span class="tache"><em>Tâche</em> Poser cinq questions à un nouveau venu.</span><span class="pistes"><span class="piste">Grammaire</span><span class="piste">Sons et tons</span></span></div></li><li><span class="num">1.11</span><div class="u-corps"><b>Au marché</b><span class="obj">Unité de synthèse : nombres, prix, politesse de l&#x27;échange.</span><span class="tache"><em>Tâche</em> Acheter trois produits.</span><span class="pistes"><span class="piste">Usage</span><span class="piste">Mots</span><span class="piste">Parole et récit</span></span></div></li><li><span class="num">1.12</span><div class="u-corps"><b>Les jours et les saisons</b><span class="obj">Le temps qui passe et le temps qu&#x27;il fait.</span><span class="tache"><em>Tâche</em> Dire quel jour on est et le temps qu&#x27;il fait.</span><span class="pistes"><span class="piste">Mots</span><span class="piste">Culture et milieu</span></span></div></li></ol>
+  </div>
+</details>
+
+<details class="bande" id="bande-2">
+  <summary>
+    <span class="tissage t-b2"></span>
+    <span class="tete"><span class="bnum">2</span><span class="bnom">Dans la cour</span><span class="cecr">A2</span><span class="nb">12 unités</span></span>
+    <span class="intention">Parler de sa vie quotidienne au passé, au présent et au futur ; décrire son milieu ; entrer dans la parole imagée.</span>
+  </summary>
+  <div class="bande-corps">
+    <div class="jepeux"><span class="etiquette">À la fin de la bande, l'apprenant peut…</span><ul><li>Je peux raconter ce que j&#x27;ai fait hier et ce que je ferai demain.</li><li>Je peux décrire des lieux, des plantes, des animaux et des travaux.</li><li>Je peux remercier, demander et refuser poliment.</li><li>Je peux comprendre le sens d&#x27;un proverbe simple.</li></ul></div>
+    <ol class="unites"><li><span class="num">2.1</span><div class="u-corps"><b>Ce que je fais d&#x27;habitude</b><span class="obj">L&#x27;aspect habituel et l&#x27;aspect neutre.</span><span class="tache"><em>Tâche</em> Décrire sa journée type.</span><span class="pistes"><span class="piste">Grammaire</span></span></div></li><li><span class="num">2.2</span><div class="u-corps"><b>Ce qui s&#x27;est passé</b><span class="obj">L&#x27;accompli (parfait).</span><span class="tache"><em>Tâche</em> Raconter sa journée d&#x27;hier.</span><span class="pistes"><span class="piste">Grammaire</span><span class="piste">Parole et récit</span></span></div></li><li><span class="num">2.3</span><div class="u-corps"><b>Ce qui va se passer</b><span class="obj">Le prospectif.</span><span class="tache"><em>Tâche</em> Dire ses projets de la semaine.</span><span class="pistes"><span class="piste">Grammaire</span></span></div></li><li><span class="num">2.4</span><div class="u-corps"><b>Dans, sur, devant</b><span class="obj">Les postpositions et les noms locatifs.</span><span class="tache"><em>Tâche</em> Décrire une cour.</span><span class="pistes"><span class="piste">Grammaire</span><span class="piste">Sens</span></span></div></li><li><span class="num">2.5</span><div class="u-corps"><b>Avec qui, avec quoi</b><span class="obj">Les compléments obliques après le verbe.</span><span class="tache"><em>Tâche</em> Dire avec quoi on fait un travail.</span><span class="pistes"><span class="piste">Grammaire</span></span></div></li><li><span class="num">2.6</span><div class="u-corps"><b>Plusieurs, très</b><span class="obj">Le pluriel et l&#x27;intensité, y compris par le ton.</span><span class="tache"><em>Tâche</em> Décrire un groupe de personnes.</span><span class="pistes"><span class="piste">Grammaire</span><span class="piste">Sons et tons</span></span></div></li><li><span class="num">2.7</span><div class="u-corps"><b>Fabriquer des mots</b><span class="obj">Dérivation (agent, diminutif, abstrait) et composition.</span><span class="tache"><em>Tâche</em> Former cinq mots nouveaux à partir de bases connues.</span><span class="pistes"><span class="piste">Mots</span><span class="piste">Grammaire</span></span></div></li><li><span class="num">2.8</span><div class="u-corps"><b>Les champs et les saisons</b><span class="obj">Cultures, outils, calendrier agricole.</span><span class="tache"><em>Tâche</em> Décrire un travail des champs.</span><span class="pistes"><span class="piste">Culture et milieu</span><span class="piste">Mots</span></span></div></li><li><span class="num">2.9</span><div class="u-corps"><b>Plantes et animaux</b><span class="obj">Classifications locales du vivant et usages.</span><span class="tache"><em>Tâche</em> Présenter une plante et son usage.</span><span class="pistes"><span class="piste">Culture et milieu</span><span class="piste">Sens</span></span></div></li><li><span class="num">2.10</span><div class="u-corps"><b>Remercier, demander, refuser</b><span class="obj">Les formes de politesse selon la relation.</span><span class="tache"><em>Tâche</em> Refuser une invitation sans offenser.</span><span class="pistes"><span class="piste">Usage</span></span></div></li><li><span class="num">2.11</span><div class="u-corps"><b>Les premiers proverbes</b><span class="obj">Sens littéral et sens figuré.</span><span class="tache"><em>Tâche</em> Expliquer un proverbe en français.</span><span class="pistes"><span class="piste">Parole et récit</span><span class="piste">Sens</span></span></div></li><li><span class="num">2.12</span><div class="u-corps"><b>Raconter un petit événement</b><span class="obj">Unité de synthèse : récit court enchaîné.</span><span class="tache"><em>Tâche</em> Raconter un événement en cinq phrases.</span><span class="pistes"><span class="piste">Parole et récit</span><span class="piste">Grammaire</span></span></div></li></ol>
+  </div>
+</details>
+
+<details class="bande" id="bande-3">
+  <summary>
+    <span class="tissage t-b3"></span>
+    <span class="tete"><span class="bnum">3</span><span class="bnom">Raconter</span><span class="cecr">B1</span><span class="nb">10 unités</span></span>
+    <span class="intention">Construire des phrases complexes, mettre en valeur une information, raconter un conte et s&#x27;adapter à son interlocuteur.</span>
+  </summary>
+  <div class="bande-corps">
+    <div class="jepeux"><span class="etiquette">À la fin de la bande, l'apprenant peut…</span><ul><li>Je peux raconter une histoire en enchaînant les événements.</li><li>Je peux mettre en valeur l&#x27;élément important de ma phrase.</li><li>Je peux rapporter les paroles de quelqu&#x27;un.</li><li>Je peux reconnaître les principales différences entre variétés de la langue.</li></ul></div>
+    <ol class="unites"><li><span class="num">3.1</span><div class="u-corps"><b>Enchaîner les actions</b><span class="obj">Coordination et enchaînement de propositions.</span><span class="tache"><em>Tâche</em> Décrire une recette ou un savoir-faire.</span><span class="pistes"><span class="piste">Grammaire</span><span class="piste">Parole et récit</span></span></div></li><li><span class="num">3.2</span><div class="u-corps"><b>Mettre en valeur</b><span class="obj">La focalisation et les pronoms focalisés.</span><span class="tache"><em>Tâche</em> Corriger une information fausse.</span><span class="pistes"><span class="piste">Grammaire</span><span class="piste">Usage</span></span></div></li><li><span class="num">3.3</span><div class="u-corps"><b>Quand, si, parce que</b><span class="obj">La subordination.</span><span class="tache"><em>Tâche</em> Expliquer une décision.</span><span class="pistes"><span class="piste">Grammaire</span></span></div></li><li><span class="num">3.4</span><div class="u-corps"><b>Il a dit que…</b><span class="obj">Le discours rapporté.</span><span class="tache"><em>Tâche</em> Rapporter une conversation.</span><span class="pistes"><span class="piste">Grammaire</span><span class="piste">Parole et récit</span></span></div></li><li><span class="num">3.5</span><div class="u-corps"><b>Le conte</b><span class="obj">Structure du conte, formules d&#x27;ouverture et de clôture, rôle de l&#x27;auditoire.</span><span class="tache"><em>Tâche</em> Suivre un conte et en résumer les étapes.</span><span class="pistes"><span class="piste">Parole et récit</span><span class="piste">Culture et milieu</span></span></div></li><li><span class="num">3.6</span><div class="u-corps"><b>Les idéophones</b><span class="obj">Mots expressifs qui peignent un son, un mouvement, une couleur.</span><span class="tache"><em>Tâche</em> Utiliser trois idéophones dans un récit.</span><span class="pistes"><span class="piste">Sens</span><span class="piste">Sons et tons</span></span></div></li><li><span class="num">3.7</span><div class="u-corps"><b>Redoubler pour dire plus</b><span class="obj">Le redoublement et ses valeurs.</span><span class="tache"><em>Tâche</em> Insister sur une qualité ou une action.</span><span class="pistes"><span class="piste">Grammaire</span><span class="piste">Mots</span></span></div></li><li><span class="num">3.8</span><div class="u-corps"><b>Parler d&#x27;ici et d&#x27;ailleurs</b><span class="obj">La variation dialectale et la norme écrite de référence.</span><span class="tache"><em>Tâche</em> Reconnaître la variété d&#x27;un enregistrement.</span><span class="pistes"><span class="piste">Usage</span><span class="piste">Sons et tons</span></span></div></li><li><span class="num">3.9</span><div class="u-corps"><b>Selon à qui l&#x27;on parle</b><span class="obj">Registres, âge, statut, adresse respectueuse.</span><span class="tache"><em>Tâche</em> Transmettre un même message à un aîné puis à un ami.</span><span class="pistes"><span class="piste">Usage</span><span class="piste">Culture et milieu</span></span></div></li><li><span class="num">3.10</span><div class="u-corps"><b>Raconter un conte</b><span class="obj">Unité de synthèse.</span><span class="tache"><em>Tâche</em> Raconter un conte connu à voix haute.</span><span class="pistes"><span class="piste">Parole et récit</span></span></div></li></ol>
+  </div>
+</details>
+
+<details class="bande" id="bande-4">
+  <summary>
+    <span class="tissage t-b4"></span>
+    <span class="tete"><span class="bnum">4</span><span class="bnom">La parole des anciens</span><span class="cecr">B2</span><span class="nb">8 unités</span></span>
+    <span class="intention">Manier la parole imagée et la parole publique ; comprendre la langue dans ses rapports avec les autres langues.</span>
+  </summary>
+  <div class="bande-corps">
+    <div class="jepeux"><span class="etiquette">À la fin de la bande, l'apprenant peut…</span><ul><li>Je peux défendre un point de vue.</li><li>Je peux employer un proverbe au bon moment et devant la bonne personne.</li><li>Je peux comprendre les paroles de cérémonie.</li><li>Je peux expliquer les emprunts et l&#x27;alternance avec le français et le dioula.</li></ul></div>
+    <ol class="unites"><li><span class="num">4.1</span><div class="u-corps"><b>Argumenter, convaincre</b><span class="obj">Organisation de l&#x27;argumentation orale.</span><span class="tache"><em>Tâche</em> Défendre une proposition devant un groupe.</span><span class="pistes"><span class="piste">Parole et récit</span><span class="piste">Grammaire</span></span></div></li><li><span class="num">4.2</span><div class="u-corps"><b>Proverbes en situation</b><span class="obj">Qui peut dire un proverbe, à qui, quand.</span><span class="tache"><em>Tâche</em> Réagir à une situation par un proverbe adapté.</span><span class="pistes"><span class="piste">Parole et récit</span><span class="piste">Usage</span></span></div></li><li><span class="num">4.3</span><div class="u-corps"><b>Paroles de cérémonie</b><span class="obj">Vœux, bénédictions, condoléances, selon ce que le comité valide.</span><span class="tache"><em>Tâche</em> Présenter des vœux.</span><span class="pistes"><span class="piste">Usage</span><span class="piste">Culture et milieu</span></span></div></li><li><span class="num">4.4</span><div class="u-corps"><b>Métaphores et images</b><span class="obj">Les grands domaines d&#x27;images de la langue.</span><span class="tache"><em>Tâche</em> Expliquer cinq expressions imagées.</span><span class="pistes"><span class="piste">Sens</span><span class="piste">Parole et récit</span></span></div></li><li><span class="num">4.5</span><div class="u-corps"><b>Chants et poésie orale</b><span class="obj">Rythme, tons et musique de la parole poétique.</span><span class="tache"><em>Tâche</em> Interpréter un court chant.</span><span class="pistes"><span class="piste">Parole et récit</span><span class="piste">Sons et tons</span></span></div></li><li><span class="num">4.6</span><div class="u-corps"><b>La langue et ses voisines</b><span class="obj">Emprunts, alternance codique, contact avec le français et le dioula.</span><span class="tache"><em>Tâche</em> Analyser une conversation mêlant les langues.</span><span class="pistes"><span class="piste">Usage</span><span class="piste">Mots</span></span></div></li><li><span class="num">4.7</span><div class="u-corps"><b>Débattre</b><span class="obj">Prendre la parole, la céder, contredire poliment.</span><span class="tache"><em>Tâche</em> Mener un échange contradictoire de trois minutes.</span><span class="pistes"><span class="piste">Parole et récit</span><span class="piste">Usage</span></span></div></li><li><span class="num">4.8</span><div class="u-corps"><b>Exposé</b><span class="obj">Unité de synthèse.</span><span class="tache"><em>Tâche</em> Présenter un exposé oral de trois minutes.</span><span class="pistes"><span class="piste">Parole et récit</span></span></div></li></ol>
+  </div>
+</details>
+
+<details class="bande" id="bande-5">
+  <summary>
+    <span class="tissage t-b5"></span>
+    <span class="tete"><span class="bnum">5</span><span class="bnom">Transmettre</span><span class="cecr">C1</span><span class="nb">6 unités</span></span>
+    <span class="intention">Passer de l&#x27;apprenant au passeur : traduire, écrire, nommer le monde moderne, enseigner, documenter.</span>
+  </summary>
+  <div class="bande-corps">
+    <div class="jepeux"><span class="etiquette">À la fin de la bande, l'apprenant peut…</span><ul><li>Je peux traduire et expliquer fidèlement entre la langue et le français.</li><li>Je peux écrire un texte suivi selon la norme orthographique.</li><li>Je peux enseigner les bases de la langue à un enfant.</li><li>Je peux enregistrer et transcrire la parole d&#x27;un aîné avec son accord.</li></ul></div>
+    <ol class="unites"><li><span class="num">5.1</span><div class="u-corps"><b>Traduire et expliquer</b><span class="obj">La médiation entre la langue et le français.</span><span class="tache"><em>Tâche</em> Traduire un message officiel pour un aîné.</span><span class="pistes"><span class="piste">Usage</span><span class="piste">Parole et récit</span></span></div></li><li><span class="num">5.2</span><div class="u-corps"><b>Nommer le monde moderne</b><span class="obj">Néologie et terminologie, en lien avec le comité.</span><span class="tache"><em>Tâche</em> Proposer un terme pour une notion nouvelle.</span><span class="pistes"><span class="piste">Mots</span><span class="piste">Culture et milieu</span></span></div></li><li><span class="num">5.3</span><div class="u-corps"><b>Écrire</b><span class="obj">Norme orthographique, découpage des mots, texte suivi.</span><span class="tache"><em>Tâche</em> Écrire une lettre d&#x27;une page.</span><span class="pistes"><span class="piste">Écriture</span><span class="piste">Grammaire</span></span></div></li><li><span class="num">5.4</span><div class="u-corps"><b>Enseigner à un enfant</b><span class="obj">La transmission d&#x27;une génération à l&#x27;autre.</span><span class="tache"><em>Tâche</em> Préparer une mini-leçon pour un enfant.</span><span class="pistes"><span class="piste">Usage</span><span class="piste">Culture et milieu</span></span></div></li><li><span class="num">5.5</span><div class="u-corps"><b>Documenter la parole d&#x27;un aîné</b><span class="obj">Consentement, enregistrement, transcription, traduction.</span><span class="tache"><em>Tâche</em> Enregistrer et transcrire un récit de deux minutes.</span><span class="pistes"><span class="piste">Parole et récit</span><span class="piste">Culture et milieu</span><span class="piste">Écriture</span></span></div></li><li><span class="num">5.6</span><div class="u-corps"><b>Devenir contributeur</b><span class="obj">Proposer des entrées au comité scientifique.</span><span class="tache"><em>Tâche</em> Proposer cinq entrées complètes.</span><span class="pistes"><span class="piste">Mots</span><span class="piste">Culture et milieu</span></span></div></li></ol>
+  </div>
+</details></div>
+</section>
+
+<section id="pistes">
+  <h2>4. Huit pistes qui traversent toutes les bandes</h2>
+  <p>Une piste par grande branche de la linguistique. Chacune progresse en spirale : on revient aux mêmes domaines à chaque bande, avec plus de profondeur.</p>
+  <div class="grille-pistes"><div class="piste-carte"><span class="code">So</span><div><b>Sons et tons</b><span class="disc">phonétique · phonologie · prosodie</span><p>Percevoir puis produire les voyelles orales et nasales, les consonnes propres à la langue et surtout les tons, qui distinguent les mots et portent une partie de la grammaire.</p></div></div><div class="piste-carte"><span class="code">Éc</span><div><b>Écriture</b><span class="disc">orthographe · lecture</span><p>Lire et écrire selon l&#x27;orthographe en usage en Côte d&#x27;Ivoire, notation des tons et de la nasalité, découpage des mots.</p></div></div><div class="piste-carte"><span class="code">Mo</span><div><b>Mots</b><span class="disc">lexicologie · morphologie lexicale</span><p>Vocabulaire par champs et par fréquence, formation des mots (dérivation, composition, redoublement), emprunts.</p></div></div><div class="piste-carte"><span class="code">Gr</span><div><b>Grammaire</b><span class="disc">morphosyntaxe · syntaxe · construction des énoncés</span><p>Ordre des constituants, marques prédicatives, pronoms, possession, postpositions, énoncés non verbaux, focalisation, phrase complexe.</p></div></div><div class="piste-carte"><span class="code">Se</span><div><b>Sens</b><span class="disc">sémantique · lexicographie</span><p>Polysémie, champs sémantiques, sens figuré, idéophones, ce que le ton fait au sens.</p></div></div><div class="piste-carte"><span class="code">Us</span><div><b>Usage</b><span class="disc">pragmatique · sociolinguistique</span><p>Parler juste selon la personne, l&#x27;âge, le lieu et le moment : salutations, politesse, demandes, refus, variation dialectale, registres, contact avec le français et le dioula.</p></div></div><div class="piste-carte"><span class="code">Pa</span><div><b>Parole et récit</b><span class="disc">analyse du discours · oralité · ethnopoétique</span><p>Dialogue, récit, conte, proverbe, devinette, chant : comment une parole s&#x27;organise et se transmet.</p></div></div><div class="piste-carte"><span class="code">Mi</span><div><b>Culture et milieu</b><span class="disc">anthropolinguistique · écolinguistique</span><p>La langue comme mémoire d&#x27;un milieu : parenté, noms, calendrier agricole, plantes, animaux, lieux, savoir-faire. Tout contenu culturel est validé par le comité.</p></div></div></div>
+</section>
+
+<section id="unite">
+  <h2>5. L'unité type, 15 à 20 minutes sur téléphone</h2>
+  <ol class="cycle"><li><span class="rond">1</span><div><b>Écouter</b><span class="volet">input centré sur le sens</span><p>Une situation entendue avant d&#x27;être expliquée, avec des voix différentes (hommes, femmes, âges, variétés).</p></div></li><li><span class="rond">2</span><div><b>Remarquer</b><span class="volet">apprentissage centré sur la langue</span><p>On isole un son, un ton, une structure ou un mot, on le compare, on en tire la règle.</p></div></li><li><span class="rond">3</span><div><b>S&#x27;exercer</b><span class="volet">apprentissage centré sur la langue</span><p>Exercices guidés et corrigés immédiatement.</p></div></li><li><span class="rond">4</span><div><b>Dire</b><span class="volet">production centrée sur le sens</span><p>L&#x27;apprenant s&#x27;enregistre et se compare à la voix de référence.</p></div></li><li><span class="rond">5</span><div><b>Agir</b><span class="volet">production centrée sur le sens</span><p>Une petite tâche de communication réelle : saluer un aîné, demander un prix, raconter.</p></div></li><li><span class="rond">6</span><div><b>Fluidité</b><span class="volet">développement de la fluidité</span><p>Rappel rapide de ce qui est déjà su, sans aucun élément nouveau.</p></div></li><li><span class="rond">7</span><div><b>Bilan</b><span class="volet">consolidation</span><p>Le cauris se remplit, les éléments appris entrent dans la révision espacée.</p></div></li></ol>
+  <p class="regle">Dosage : au moins 95 % de mots déjà connus dans les écoutes de l'étape 1, 100 % dans l'étape 6 (Nation 2007). Au plus 8 à 10 éléments nouveaux par unité.</p>
+</section>
+
+<section id="exercices">
+  <h2>6. Les 22 types d'exercices</h2>
+  <p>Aucun exercice ne repose sur la seule traduction mot à mot. La bonne réponse est signalée par le cauris qui se remplit d'or.</p>
+  <div class="tableau"><table>
+    <thead><tr><th scope="col">Exercice</th><th scope="col">Pistes</th><th scope="col">Audio</th><th scope="col">Principe</th></tr></thead>
+    <tbody><tr><td>Même ou différent ?</td><td>Sons et tons</td><td>oui</td><td>Deux mots qui ne diffèrent que par le ton ou par une voyelle : l&#x27;apprenant dit s&#x27;ils sont identiques.</td></tr><tr><td>Quel ton ?</td><td>Sons et tons, Écriture</td><td>oui</td><td>Choisir la courbe tonale entendue parmi plusieurs dessins de hauteur.</td></tr><tr><td>Trois voix, un mot</td><td>Sons et tons</td><td>oui</td><td>Le même mot dit par plusieurs locuteurs, pour apprendre à reconnaître le ton malgré la variation de voix.</td></tr><tr><td>Répète et compare</td><td>Sons et tons</td><td>oui</td><td>L&#x27;apprenant s&#x27;enregistre ; les deux enregistrements sont rejoués l&#x27;un après l&#x27;autre.</td></tr><tr><td>Dictée</td><td>Écriture, Sons et tons</td><td>oui</td><td>Écrire le mot entendu avec ses tons.</td></tr><tr><td>Lis à voix haute</td><td>Écriture, Sons et tons</td><td>oui</td><td>Lire un mot ou une phrase écrite puis écouter la référence.</td></tr><tr><td>Écoute et choisis</td><td>Mots</td><td>oui</td><td>Associer un mot entendu à son image.</td></tr><tr><td>Quel sens ?</td><td>Mots, Sens</td><td>non</td><td>Associer un mot écrit à sa traduction ou à sa définition.</td></tr><tr><td>Fabrique le mot</td><td>Mots, Grammaire</td><td>non</td><td>Former un dérivé ou un composé à partir d&#x27;une base.</td></tr><tr><td>Remets dans l&#x27;ordre</td><td>Grammaire</td><td>oui</td><td>Placer sujet, marque prédicative, objet, verbe et complément dans le bon ordre.</td></tr><tr><td>Transforme</td><td>Grammaire</td><td>oui</td><td>Passer de l&#x27;affirmatif au négatif, d&#x27;un aspect à un autre, d&#x27;une personne à une autre.</td></tr><tr><td>Complète le tableau</td><td>Grammaire</td><td>non</td><td>Remplir une série de pronoms ou de marques prédicatives.</td></tr><tr><td>Démonte la phrase</td><td>Grammaire, Sens</td><td>non</td><td>Relier chaque morceau d&#x27;une phrase à sa fonction, selon les règles de glose de Leipzig (niveau 3 et plus).</td></tr><tr><td>Range les mots</td><td>Sens, Culture et milieu</td><td>non</td><td>Classer des mots dans leurs champs de sens.</td></tr><tr><td>Au propre ou au figuré ?</td><td>Sens, Parole et récit</td><td>non</td><td>Distinguer sens littéral et sens imagé.</td></tr><tr><td>Que dirais-tu ?</td><td>Usage</td><td>oui</td><td>Choisir la formule qui convient selon l&#x27;interlocuteur (âge, parenté, statut) et le moment.</td></tr><tr><td>À toi de parler</td><td>Usage, Parole et récit</td><td>oui</td><td>Jeu de rôle avec un interlocuteur enregistré : l&#x27;apprenant répond à voix haute.</td></tr><tr><td>Écoute l&#x27;histoire</td><td>Parole et récit</td><td>oui</td><td>Questions de compréhension sur un dialogue, un récit ou un conte.</td></tr><tr><td>Le bon proverbe</td><td>Parole et récit, Usage</td><td>oui</td><td>Associer un proverbe à la situation où il se dit.</td></tr><tr><td>Rappel éclair</td><td>Mots, Grammaire, Sons et tons</td><td>oui</td><td>Exercice chronométré sur des éléments déjà sus, pour gagner en automatisme.</td></tr><tr><td>Explique-le</td><td>Usage, Parole et récit</td><td>oui</td><td>Transmettre en français le sens d&#x27;une parole entendue, ou l&#x27;inverse.</td></tr><tr><td>Propose au comité</td><td>Mots, Culture et milieu</td><td>oui</td><td>L&#x27;apprenant avancé propose une entrée, qui suit le circuit de validation du comité.</td></tr></tbody>
+  </table></div>
+</section>
+
+<section id="donnees">
+  <h2>7. Évaluation, et circuit de la donnée</h2>
+  <h3>Évaluer la progression</h3>
+  <ul class="points">
+    <li><b>Test de positionnement</b> pour les apprenants qui ne partent pas de zéro (enfants de la diaspora, locuteurs passifs).</li>
+    <li><b>Contrôle d'unité</b> : la tâche finale de l'unité.</li>
+    <li><b>Examen de bande</b> mêlant les huit pistes ; sa réussite ouvre la bande suivante et donne une parure.</li>
+    <li><b>Auto-évaluation « Je peux… »</b> sur le modèle du CECR, y compris l'échelle de maîtrise phonologique du volume complémentaire.</li>
+    <li><b>Portfolio sonore</b> : l'apprenant garde ses enregistrements et entend ses progrès.</li>
+    <li><b>Révision espacée</b> : chaque élément revient à intervalles croissants, ajustés selon les erreurs.</li>
+  </ul>
+  <h3>Six types de contenus fournis par le comité</h3>
+  <ul class="points"><li><b>Entrée lexicale</b> Forme écrite avec tons, API, schéma tonal, catégorie (dont nom relationnel et nom locatif), pluriel, formes liées, sens, champ sémantique, registre, exemples glosés, enregistrements, note culturelle.</li><li><b>Point de grammaire</b> Explication en français simple, règle, au moins deux exemples glosés, prérequis.</li><li><b>Situation pragmatique</b> Qui parle à qui, ce qui se dit, ce qu&#x27;il faut éviter.</li><li><b>Texte oral</b> Conte, proverbe, devinette, chant, récit, parole de cérémonie, avec contexte d&#x27;emploi et restrictions éventuelles.</li><li><b>Fiche phonologique</b> Un son ou un ton, ses réalisations, ses paires minimales.</li><li><b>Unité</b> Objectif, pistes, tâche finale, éléments liés : déjà définie dans le programme.</li></ul>
+  <h3>Règles du circuit</h3>
+  <ul class="points">
+    <li>Statuts : brouillon, proposé, validé, rejeté ou à revoir.</li>
+    <li><b>La validation est faite par un membre différent de celui qui a saisi</b>, vérifié par la base de données elle-même.</li>
+    <li>Chaque enregistrement porte le consentement éclairé du locuteur, son pseudonyme, sa variété et la façon dont il souhaite être crédité.</li>
+    <li>Un texte réservé (savoir initiatique, parole qui ne se dit pas en public) est marqué et n'est jamais publié.</li>
+    <li>Seuls les contenus validés sont copiés vers le site public.</li>
+  </ul>
+</section>
+
+<section id="decisions">
+  <h2>8. Six décisions qui reviennent au comité</h2>
+  <ol class="decisions"><li><span class="dn">1</span><div><b>Norme de référence</b><p>Pour le dan : gouèta, blo, ou deux cours parallèles. Pour le toura : le dialecte de référence.</p></div></li><li><span class="dn">2</span><div><b>Orthographe</b><p>Adoption formelle de l&#x27;alphabet officiel et des règles de découpage des mots, en s&#x27;appuyant sur Idiatov pour le toura.</p></div></li><li><span class="dn">3</span><div><b>Liste de fréquence</b><p>Il n&#x27;existe pas encore de liste de fréquence publiée pour le dan ou le toura : le comité constitue une première liste pour ordonner le vocabulaire des bandes 1 et 2.</p></div></li><li><span class="dn">4</span><div><b>Calibrage des niveaux</b><p>Les correspondances avec le CECR sont des objectifs, ajustées après les premiers apprenants.</p></div></li><li><span class="dn">5</span><div><b>Contenus culturels</b><p>Ce qui peut être enseigné publiquement, et ce qui ne le peut pas.</p></div></li><li><span class="dn">6</span><div><b>Gouro</b><p>Même architecture, à ouvrir quand le comité dispose de contributeurs gouro.</p></div></li></ol>
+</section>
+
+<section id="methodes">
+  <h2>9. Ce que MinWoo emprunte aux méthodes existantes</h2>
+  <div class="tableau"><table>
+    <thead><tr><th scope="col">Modèle</th><th scope="col">Ce qu'on retient</th><th scope="col">Ce qu'on fait autrement</th></tr></thead>
+    <tbody><tr><th scope='row'>Méthodes audio à rappel espacé (Pimsleur 1967)</th><td>Audio d&#x27;abord, rappel à intervalles croissants</td><td>Plusieurs voix ; l&#x27;écrit arrive tôt car l&#x27;orthographe est un enjeu d&#x27;aménagement</td></tr><tr><th scope='row'>Applications à micro-leçons</th><td>Séances courtes, progression visible, régularité</td><td>Pas de traduction mot à mot comme exercice principal ; contenus validés par des linguistes</td></tr><tr><th scope='row'>Méthodes à phase passive puis active</th><td>Longue exposition avant la production</td><td>Production enregistrée dès la bande 0, pour les tons</td></tr><tr><th scope='row'>Transmission maître-apprenti (Hinton 2002)</th><td>La langue se transmet de personne à personne, en situation</td><td>La bande 5 fait de l&#x27;apprenant un passeur et un contributeur</td></tr><tr><th scope='row'>Documentation des langues (Himmelmann 1998)</th><td>Données primaires enregistrées, métadonnées, consentement</td><td>Ces données servent aussi directement l&#x27;enseignement</td></tr></tbody>
+  </table></div>
+</section>
+
+<section id="bibliographie">
+  <h2>10. Bibliographie</h2>
+  <ol class="biblio"><li>Bearth, Thomas. 1968. <i>Étude instrumentale des tons du toura (Côte d'Ivoire)</i>.</li><li>Bearth, Thomas. 1971. <i>L'énoncé toura (Côte d'Ivoire)</i>. Norman : Summer Institute of Linguistics.</li><li>Bearth, Thomas. 1983. <i>Le toura : esquisse grammaticale</i>. Abidjan : SIL.</li><li>Cepeda, N. J., et al. 2006. Distributed practice in verbal recall tasks. <i>Psychological Bulletin</i> 132(3).</li><li>Comrie, B., Haspelmath, M. &amp; Bickel, B. 2008. <i>The Leipzig Glossing Rules</i>.</li><li>Conseil de l'Europe. 2001. <i>Cadre européen commun de référence pour les langues</i> ; 2020. <i>Volume complémentaire</i>.</li><li>Cooper, Robert L. 1989. <i>Language Planning and Social Change</i>. Cambridge University Press.</li><li>Halaoui, N., et al. 1983. <i>Atlas des langues mandé-sud de Côte d'Ivoire</i>. Abidjan : ILA / ACCT.</li><li>Haugen, Einar. 1972. <i>The Ecology of Language</i>. Stanford University Press.</li><li>Himmelmann, Nikolaus P. 1998. Documentary and descriptive linguistics. <i>Linguistics</i> 36.</li><li>Hinton, Leanne. 2002. <i>How to Keep Your Language Alive</i>. Heyday.</li><li>Idiatov, Dmitry. 2008. <i>Dictionnaire toura-français</i>.</li><li>Idiatov, Dmitry. La détermination des limites des mots : l'exemple de l'orthographe toura. <i>Mandenkan</i> 41.</li><li>Idiatov, Dmitry. 2017. Mande languages. Introduction (HAL halshs-01481642).</li><li>Khachaturyan, Maria. 2021. A typological portrait of Mano, Southern Mande. <i>Linguistic Typology</i>.</li><li>Nation, Paul. 2007. The Four Strands. <i>Innovation in Language Learning and Teaching</i> 1(1), 2-13.</li><li>Pimsleur, Paul. 1967. A memory schedule. <i>The Modern Language Journal</i> 51(2).</li><li>Roediger, H. L. &amp; Karpicke, J. D. 2006. Test-enhanced learning. <i>Psychological Science</i> 17(3).</li><li>Sakai, M. &amp; Moorman, C. 2018. Can perception training improve the production of second language phonemes? <i>Applied Psycholinguistics</i> 39(1).</li><li>UNESCO, groupe d'experts ad hoc. 2003. <i>Language Vitality and Endangerment</i>.</li><li>Vydrin, Valentin. 2016. Tonal inflection in Mande languages: The cases of Bamana and Dan-Gwɛɛtaa. <i>Tone and Inflection</i>.</li><li>Vydrin, Valentin. 2021. Esquisse de grammaire du dan de l'Est (dialecte de Gouèta). <i>Mandenkan</i> 64, 3-80.</li><li>Vydrin, Valentin &amp; Mongnan, Alphonse. 2008. Dictionnaire dan-français (dan de l'Est), avec une esquisse de grammaire.</li><li>Wang, Y., Spence, M. M., Jongman, A. &amp; Sereno, J. A. 1999. Training American listeners to perceive Mandarin tones. <i>JASA</i> 106(6).</li></ol>
+</section>
+
+<footer>MinWoo — plateforme d'apprentissage des langues mandé-sud de Côte d'Ivoire. Version lisible par l'application : content/curriculum/programme.json ; format des données : content/schema/modele-de-donnees.schema.json.</footer>
+</main>
